@@ -1,25 +1,24 @@
 package database.DAO;
 
 import database.Connector;
-import models.Homework;
-import models.Subject;
+import models.Test;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class HomeworkDAO {
-    public void insert(Homework h) {
+public class TestDAO {
+    public void insert(Test t) {
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        em.persist(h);
+        em.persist(t);
         em.getTransaction().commit();
         em.close();
     }
 
-    public List<Homework> select(){
+    public List<Test> select(){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        List<Homework> result = em.createQuery("select h from Homework h", Homework.class).getResultList();
+        List<Test> result = em.createQuery("select t from Test t", Test.class).getResultList();
         em.getTransaction().commit();
         em.close();
         return result;
