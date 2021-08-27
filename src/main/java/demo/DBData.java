@@ -11,15 +11,13 @@ public class DBData {
         ArrayList<Subject> subjectList = new ArrayList<>();
 
         subjectList.add(new Subject("English"));
-        subjectList.add(new Subject("German"));
-        subjectList.add(new Subject("Math"));
 
         return subjectList;
     }
 
     public ArrayList<Homework> getHomework() {
         ArrayList<Homework> hwList = new ArrayList<>();
-        Subject s = new SubjectDAO().selectById(1);
+        Subject s = new SubjectDAO().selectById(2);
 
         hwList.add(new Homework("Dream", s, "234", false));
 
