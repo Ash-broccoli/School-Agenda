@@ -12,6 +12,8 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <title>School-Agenda</title>
 </head>
 <body>
@@ -25,8 +27,8 @@
         completeHw = (ArrayList<Homework>) new HomeworkDAO().selectByCompletion(true);
         if (!incompleteHw.isEmpty()) {
     %>
-    <h2>Uncompleted</h2>
-    <table class="table table-dark table-striped table-hover">
+    <h3>Uncompleted</h3>
+    <table class="table table-Secondary table-striped table-hover">
         <thead class="white-header">
         <tr>
             <th scope="col">Task</th>
@@ -64,8 +66,8 @@
         if(!completeHw.isEmpty()){
 
     %>
-    <h2>Completed</h2>
-    <table class="table table-dark table-striped table-hover">
+    <h3>Completed</h3>
+    <table class="table table-Secondary table-striped table-hover">
         <thead class="white-header">
         <tr>
             <th scope="col">Task</th>
