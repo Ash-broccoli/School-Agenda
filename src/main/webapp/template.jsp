@@ -33,14 +33,14 @@
                         <a class="nav-link" aria-current="page" href="tests.jsp">Tests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="grades.jsp">Grades</a>
+                        <a class="nav-link" aria-current="page" href="grades.jsp">Grades</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <br>
-    <h1>Grades</h1>
+    <h1>Welcome to your Agenda!</h1>
     <br/>
 
 </div>

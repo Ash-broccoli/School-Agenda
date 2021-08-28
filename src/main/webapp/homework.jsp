@@ -18,7 +18,6 @@
 </head>
 <body <%
     if (request.getParameter("complete") != null) {
-        System.out.println("popup");
 %>
         onload="snackbarPopup()"
         <%
@@ -53,7 +52,6 @@
     <br>
     <h1>Homework</h1>
     <%
-        System.out.println(request.getParameter("complete"));
         ArrayList<Homework> incompleteHw;
         ArrayList<Homework> completeHw;
         HomeworkDAO homeworkDAO = new HomeworkDAO();
@@ -130,7 +128,8 @@
                 <th scope="col">Task</th>
                 <th scope="col">Subject</th>
                 <th scope="col">Was due till</th>
-                <th scope="col">Completed</th>
+                <th scope="col">Status</th>
+                <th scope="col">Done?</th>
             </tr>
             </thead>
             <tbody>
@@ -152,6 +151,14 @@
                     <%
                         out.print("<p style=\"color: green;\">Completed</p>");
                     %>
+                </td>
+                <td>
+                    <form action="finishedTaskServlet" method="get">
+                        <input type=hidden name="homeworkId" value="<%out.print(hw.getHomeworkId());%>">
+                        <button type=submit
+                                name="submit" class="btn btn-danger">...wait no
+                        </button>
+                    </form>
                 </td>
             </tr>
             <%}%>
