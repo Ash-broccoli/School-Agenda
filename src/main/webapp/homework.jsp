@@ -49,9 +49,10 @@
     <%
         ArrayList<Homework> incompleteHw;
         ArrayList<Homework> completeHw;
+        HomeworkDAO homeworkDAO = new HomeworkDAO();
 
-        incompleteHw = (ArrayList<Homework>) new HomeworkDAO().selectByCompletion(false);
-        completeHw = (ArrayList<Homework>) new HomeworkDAO().selectByCompletion(true);
+        incompleteHw = (ArrayList<Homework>) homeworkDAO.selectByCompletion(false);
+        completeHw = (ArrayList<Homework>) homeworkDAO.selectByCompletion(true);
         if (!incompleteHw.isEmpty()) {
     %>
     <h3>Uncompleted</h3>
@@ -62,7 +63,8 @@
                 <th scope="col">Task</th>
                 <th scope="col">Subject</th>
                 <th scope="col">Due until</th>
-                <th scope="col">Completed</th>
+                <th scope="col">Status</th>
+                <th scope="col">Done?</th>
             </tr>
             </thead>
             <tbody>
@@ -84,6 +86,12 @@
                     <%
                         out.print("<p style=\"color: red;\">Incomplete</p>");
                     %>
+                </td>
+                <td>
+                    <form action="finishedTaskServlet" method="get">
+                        <input type=hidden name="homeworkId" value="<%out.print(hw.getHomeworkId());%>">
+                    <button type=submit name="submit" class="btn btn-success">Yepp!</button>
+                    </form>
                 </td>
             </tr>
             <%}%>
@@ -149,5 +157,9 @@
     %>
 
 </div>
+<script>
+
+
+</script>
 </body>
 </html>
