@@ -119,7 +119,7 @@
             <tr>
                 <th scope="col">Task</th>
                 <th scope="col">Subject</th>
-                <th scope="col">Due until</th>
+                <th scope="col">Was due till</th>
                 <th scope="col">Completed</th>
             </tr>
             </thead>

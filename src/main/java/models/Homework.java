@@ -21,6 +21,14 @@ public class Homework {
         this.dueTill = dueTill;
         this.completed = completed;
     }
+    public void setEverything(Homework h) {
+        this.setHomework(h.homework);
+        this.setSubjectId(h.subjectId);
+        this.setDueTill(h.dueTill);
+        this.setCompleted(h.completed);
+    }
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
