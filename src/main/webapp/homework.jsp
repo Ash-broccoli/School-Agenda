@@ -16,7 +16,13 @@
     <link rel="stylesheet" href="css/style.css">
     <title>School-Agenda</title>
 </head>
-<body>
+<body <%
+    if (request.getParameter("complete") != null) {
+        System.out.println("popup");
+%>
+        onload="snackbarPopup()"
+        <%
+            }%>>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -47,6 +53,7 @@
     <br>
     <h1>Homework</h1>
     <%
+        System.out.println(request.getParameter("complete"));
         ArrayList<Homework> incompleteHw;
         ArrayList<Homework> completeHw;
         HomeworkDAO homeworkDAO = new HomeworkDAO();
@@ -88,9 +95,11 @@
                     %>
                 </td>
                 <td>
-                    <form action="finishedTaskServlet" method="get">
+                    <form action="finishedTaskServlet" method="post">
                         <input type=hidden name="homeworkId" value="<%out.print(hw.getHomeworkId());%>">
-                    <button type=submit name="submit" class="btn btn-success">Yepp!</button>
+                        <button type=submit
+                                name="submit" class="btn btn-success">Yepp!
+                        </button>
                     </form>
                 </td>
             </tr>
@@ -106,6 +115,7 @@
             out.println("<br>");
         }%>
     <br>
+    <div id="snackbar">I'm so proud of you! Take a small break</div>
     <hr class="pageDivider"/>
     <br>
     <%
@@ -150,7 +160,7 @@
     </div>
     <%
         } else {
-            out.println("<h3>Uncompleted</h3>");
+            out.println("<h3>Completed</h3>");
             out.println("<br>");
             out.println("<p>Complete some tasks to get it over with.");
         }
@@ -158,8 +168,13 @@
 
 </div>
 <script>
-
-
+    function snackbarPopup() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
 </script>
 </body>
 </html>

@@ -11,11 +11,11 @@ import javax.servlet.annotation.*;
 public class finishedTaskServlet extends HttpServlet {
     private String message;
 
-    public void init() {
-        message = "Hello World!";
-    }
-
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+
+    }
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int homeworkId = Integer.parseInt(req.getParameter("homeworkId"));
         HomeworkDAO homeworkDAO = new HomeworkDAO();
 
@@ -23,7 +23,8 @@ public class finishedTaskServlet extends HttpServlet {
         hw.setCompleted(true);
         homeworkDAO.update(hw);
 
-        resp.sendRedirect("homework.jsp");
+        resp.sendRedirect("homework.jsp?complete=true");
+
     }
 
     public void destroy() {
