@@ -45,6 +45,9 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="grades.jsp">Grades</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="subjects.jsp">Subjects</a>
+                    </li>
                 </ul>
             </div>
         </div>
