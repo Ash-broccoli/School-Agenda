@@ -1,17 +1,22 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ page import="models.Homework" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="database.DAO.HomeworkDAO" %>
+<%@ page import="models.Subject" %>
+<%@ page import="database.DAO.SubjectDAO" %><%--
+  Created by IntelliJ IDEA.
+  User: alyss
+  Date: 27/08/2021
+  Time: 17:26
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>School Agenda</title>
+    <title>School-Agenda</title>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -46,8 +51,71 @@
     </nav>
     <br>
     <h1>Subjects</h1>
-    <br/>
-    
+    <%
+        ArrayList<Subject> subList;
+        SubjectDAO subjectDAO = new SubjectDAO();
+        subList = (ArrayList<Subject>) subjectDAO.select();
+    %>
+    <br>
+    <div class="row">
+        <div class="col">
+            <h3>Monday</h3>
+            <table class="table table-Secondary table-striped table-hover">
+                <thead class="white-header">
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (Subject s : subList) {%>
+                <tr>
+                    <td>
+                        <%out.print(s.getSubject());%>
+                    </td>
+                    <td>
+                        <form action="finishedTaskServlet" method="post">
+                            <input type=hidden name="subjectId" value="<%out.print(s.getSubjectId());%>">
+                            <button type=submit
+                                    name="submit" class="btn btn-secondary">Edit
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col">
+            <h3>Tuesday</h3>
+            <table class="table table-Secondary table-striped table-hover">
+                <thead class="white-header">
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (Subject s : subList) {%>
+                <tr>
+                    <td>
+                        <%out.print(s.getSubject());%>
+                    </td>
+                    <td>
+                        <form action="finishedTaskServlet" method="post">
+                            <input type=hidden name="subjectId" value="<%out.print(s.getSubjectId());%>">
+                            <button type=submit
+                                    name="submit" class="btn btn-secondary">Edit
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>
