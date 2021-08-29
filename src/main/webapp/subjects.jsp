@@ -58,6 +58,9 @@
         subListMon = (ArrayList<Subject>) subjectDAO.selectByDay("Monday");
         subListTue = (ArrayList<Subject>) subjectDAO.selectByDay("Tuesday");
     %>
+    <div style="height: 50px">
+        <button class="btn btn-Secondary" onclick="window.location.href='addSubject.jsp'">Add Subject</button>
+    </div>
     <br>
     <div class="row">
         <div class="col">
