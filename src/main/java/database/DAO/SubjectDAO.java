@@ -1,6 +1,7 @@
 package database.DAO;
 
 import database.Connector;
+import models.Homework;
 import models.Subject;
 
 import javax.persistence.EntityManager;
@@ -12,6 +13,14 @@ public class SubjectDAO {
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
         em.persist(s);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    public void delete(Subject s) {
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+        em.remove(em.contains(s) ? s : em.merge(s));
         em.getTransaction().commit();
         em.close();
     }

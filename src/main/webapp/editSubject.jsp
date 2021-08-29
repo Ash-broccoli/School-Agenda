@@ -75,6 +75,10 @@
         <br>
         <button class="btn btn-Secondary" type="submit" name="submit">Edit</button>
     </form>
+    <div>
+        <button class="btn btn-Secondary" onclick="window.history.back()">Back</button>
+        <button class="btn btn-danger" onclick="window.location='deleteSubjectServlet?id=<%out.print(id);%>'">Delete Subject</button>
+    </div>
 </div>
 </body>
 </html>
