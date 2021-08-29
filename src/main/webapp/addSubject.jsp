@@ -56,11 +56,11 @@
         </div>
         <br>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="day" id="monday" value="monday">
+            <input class="form-check-input" type="radio" name="day" id="monday" value="Monday">
             <label class="form-check-label" for="monday">Monday</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="day" id="tuesday" value="tuesday">
+            <input class="form-check-input" type="radio" name="day" id="tuesday" value="Tuesday">
             <label class="form-check-label" for="tuesday">Tuesday</label>
         </div>
         <br>

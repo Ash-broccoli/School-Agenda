@@ -1,4 +1,5 @@
-<%--
+<%@ page import="models.Subject" %>
+<%@ page import="database.DAO.SubjectDAO" %><%--
   Created by IntelliJ IDEA.
   User: alyss
   Date: 29/08/2021
@@ -47,18 +48,27 @@
     </nav>
     <br>
     <h1>Edit Subject</h1>
+    <%
+        int id = Integer.parseInt(request.getParameter("editId"));
+        Subject s = new SubjectDAO().selectById(id);
+        String subject = s.getSubject();
+        String day = s.getDay();
+    %>
     <form action="editSubjectServlet" method="get" accept-charset="UTF-8">
         <div class="mb-3">
             <label for="subject">Subject</label>
-            <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" autofocus required>
+            <input type="text" name="subject" id="subject" class="form-control" value="<%out.print(subject);%>" placeholder="Subject" autofocus required>
+            <input type="hidden" name="id" value="<%out.print(id);%>">
         </div>
         <br>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="day" id="monday" value="monday">
+            <input class="form-check-input" type="radio" name="day" id="monday" value="Monday"
+            <%if(day.equals("Monday")){%> checked<%}%>>
             <label class="form-check-label" for="monday">Monday</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="day" id="tuesday" value="tuesday">
+            <input class="form-check-input" type="radio" name="day" id="tuesday" value="Tuesday"
+                <%if(day.equals("Tuesday")){%> checked<%}%>>
             <label class="form-check-label" for="tuesday">Tuesday</label>
         </div>
         <br>

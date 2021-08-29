@@ -17,6 +17,11 @@ public class Subject {
         this.day = day;
     }
 
+    public void setEverything(Subject s) {
+        this.setSubject(s.subject);
+        this.setDay(s.day);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="subjectId")

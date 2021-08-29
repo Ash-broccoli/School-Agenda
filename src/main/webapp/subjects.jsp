@@ -79,12 +79,8 @@
                         <%out.print(s.getSubject());%>
                     </td>
                     <td>
-                        <form action="finishedTaskServlet" method="post">
-                            <input type=hidden name="subjectId" value="<%out.print(s.getSubjectId());%>">
-                            <button type=submit
-                                    name="submit" class="btn btn-secondary">Edit
-                            </button>
-                        </form>
+                        <button onclick="window.location='editSubject.jsp?editId=<%out.print(s.getSubjectId());%>'" class="btn btn-secondary">Edit
+                        </button>
                     </td>
                 </tr>
                 <%}%>
@@ -108,12 +104,8 @@
                         <%out.print(s.getSubject());%>
                     </td>
                     <td>
-                        <form style="float: left;" action="editSubject.jsp" method="get">
-                            <input type=hidden name="subjectId" value="<%out.print(s.getSubjectId());%>">
-                            <button type=submit
-                                    name="submit" class="btn btn-secondary">Edit
+                            <button onclick="window.location='editSubject.jsp?editId=<%out.print(s.getSubjectId());%>'" class="btn btn-secondary">Edit
                             </button>
-                        </form>
                     </td>
                 </tr>
                 <%}%>
