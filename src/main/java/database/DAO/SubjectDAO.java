@@ -37,7 +37,7 @@ public class SubjectDAO {
     public Subject selectById(int id){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        Subject result = em.createQuery("select s from Subject s where s.subjectId = :id", Subject.class).setParameter("id", id).getSingleResult();
+        Subject result = selectById(id, em);
         em.getTransaction().commit();
         em.close();
         return result;

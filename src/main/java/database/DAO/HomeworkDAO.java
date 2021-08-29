@@ -38,7 +38,7 @@ public class HomeworkDAO {
     public Homework selectById(int id){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        Homework result = em.createQuery("select h from Homework h where h.homeworkId = :id", Homework.class).setParameter("id", id).getSingleResult();
+        Homework result = selectById(id, em);
         em.getTransaction().commit();
         em.close();
         return result;
