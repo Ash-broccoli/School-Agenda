@@ -15,7 +15,7 @@ public class AddSubjectServlet extends HttpServlet {
         String subject = request.getParameter("subject");
         String day = request.getParameter("day");
         Subject s = new Subject();
-        
+
         s.setSubject(subject);
         s.setDay(day);
         new SubjectDAO().insert(s);

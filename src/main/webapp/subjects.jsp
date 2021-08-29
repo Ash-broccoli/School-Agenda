@@ -108,7 +108,7 @@
                         <%out.print(s.getSubject());%>
                     </td>
                     <td>
-                        <form action="finishedTaskServlet" method="post">
+                        <form style="float: left;" action="editSubject.jsp" method="get">
                             <input type=hidden name="subjectId" value="<%out.print(s.getSubjectId());%>">
                             <button type=submit
                                     name="submit" class="btn btn-secondary">Edit
