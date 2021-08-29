@@ -55,20 +55,35 @@
             <input type="text" name="task" id="task" class="form-control" placeholder="Task" autofocus required>
         </div>
         <br>
-        <div class="mb-3">
-            <label for="subject">Subject</label>
-            <select id="subject" class="form-control" name="subject">
-                <option selected disabled hidden value="">Select a Subject</option>
-                <%
-                    ArrayList<Subject> subList = (ArrayList<Subject>) new SubjectDAO().select();
-                    for (Subject sub : subList) {
-                %>
-                <option class="form-control" value="<%out.print(sub.getSubjectId());%>"><%
-                    out.print(sub.getSubject());%></option>
-                <%}%>
-            </select>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="MonSubject">Monday subjects</label>
+                <select id="MonSubject" class="form-control" name="MonSubject">
+                    <option selected value="">Select one</option>
+                    <%
+                        ArrayList<Subject> MonSubList = (ArrayList<Subject>) new SubjectDAO().selectByDay("Monday");
+                        for (Subject sub : MonSubList) {
+                    %>
+                    <option class="form-control" value="<%out.print(sub.getSubjectId());%>"><%
+                        out.print(sub.getSubject());%></option>
+                    <%}%>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="TueSubject">Tuesday subjects</label>
+                <select id="TueSubject" class="form-control" name="TueSubject">
+                    <option selected value="">Select one </option>
+                    <%
+                        ArrayList<Subject> TueSubList = (ArrayList<Subject>) new SubjectDAO().selectByDay("Tuesday");
+                        for (Subject sub : TueSubList) {
+                    %>
+                    <option class="form-control" value="<%out.print(sub.getSubjectId());%>"><%
+                        out.print(sub.getSubject());%></option>
+                    <%}%>
+                </select>
+            </div>
         </div>
-       <br>
+        <br>
         <div class="mb-3">
             <label for="due">Due date</label>
             <input type="date" name="due" id="due" class="form-control" placeholder="Due date" required>
