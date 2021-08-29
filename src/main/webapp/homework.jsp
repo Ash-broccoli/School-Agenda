@@ -63,6 +63,10 @@
         completeHw = (ArrayList<Homework>) homeworkDAO.selectByCompletion(true);
         if (!incompleteHw.isEmpty()) {
     %>
+    <div style="height: 50px">
+    <button class="btn btn-Secondary" onclick="window.location.href='addHomework.jsp'">Add Homework</button>
+    </div>
+    <br>
     <h3>Uncompleted</h3>
     <div class="table-responsive">
         <table class="table table-Secondary table-striped table-hover">

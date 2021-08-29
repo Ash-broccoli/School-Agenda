@@ -1,10 +1,10 @@
-<%@ page import="models.Homework" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="database.DAO.HomeworkDAO" %><%--
+<%@ page import="models.Subject" %>
+<%@ page import="database.DAO.SubjectDAO" %><%--
   Created by IntelliJ IDEA.
   User: alyss
-  Date: 27/08/2021
-  Time: 17:26
+  Date: 29/08/2021
+  Time: 03:30
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,12 +16,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>School-Agenda</title>
 </head>
-<body <%
-    if (request.getParameter("complete") != null) {
-%>
-        onload="snackbarPopup()"
-        <%
-            }%>>
+<body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -37,7 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="homework.jsp">Homework</a>
+                        <a class="nav-link active" aria-current="page" href="homework.jsp">Homework</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="tests.jsp">Tests</a>
@@ -53,27 +48,34 @@
         </div>
     </nav>
     <br>
-    <h1>Header</h1>
-    <%
-
-    %>
-    <div class="table-responsive">
-        <table class="table table-Secondary table-striped table-hover">
-            <thead class="white-header">
-            <tr>
-                <th scope="col">Task</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-<%--                    <%out.print(hw.getHomework());%>--%>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
+    <h1>Add Homework</h1>
+    <form action="addHomeworkServlet" method="get" accept-charset="UTF-8">
+        <div class="mb-3">
+            <label for="task">Task</label>
+            <input type="text" name="task" id="task" class="form-control" placeholder="Task" autofocus required>
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="subject">Subject</label>
+            <select id="subject" class="form-control" name="subject">
+                <option selected disabled hidden value="">Select a Subject</option>
+                <%
+                    ArrayList<Subject> subList = (ArrayList<Subject>) new SubjectDAO().select();
+                    for (Subject sub : subList) {
+                %>
+                <option class="form-control" value="<%out.print(sub.getSubjectId());%>"><%
+                    out.print(sub.getSubject());%></option>
+                <%}%>
+            </select>
+        </div>
+       <br>
+        <div class="mb-3">
+            <label for="due">Due date</label>
+            <input type="date" name="due" id="due" class="form-control" placeholder="Due date" required>
+        </div>
+        <br>
+        <button class="btn btn-Secondary" type="submit" name="submit">Add homework</button>
+    </form>
 </div>
 </body>
 </html>
