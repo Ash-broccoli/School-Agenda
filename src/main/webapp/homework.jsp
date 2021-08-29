@@ -77,6 +77,7 @@
                 <th scope="col">Due until</th>
                 <th scope="col">Status</th>
                 <th scope="col">Done?</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -106,6 +107,10 @@
                                 name="submit" class="btn btn-success">Yepp!
                         </button>
                     </form>
+                </td>
+                <td>
+                    <button onclick="window.location='editHomework.jsp?editId=<%out.print(hw.getHomeworkId());%>'" class="btn btn-secondary">Edit
+                    </button>
                 </td>
             </tr>
             <%}%>
