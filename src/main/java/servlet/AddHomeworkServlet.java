@@ -23,14 +23,19 @@ public class AddHomeworkServlet extends HttpServlet {
         Subject s = null;
 
         if(sMonSubjectId.equals("") && !sTueSubjectId.equals("")){
-            int tueSubjectId = Integer.parseInt(sTueSubjectId);
-            s = new SubjectDAO().selectById(tueSubjectId);
+            setHomework(response, task, sTueSubjectId, dueDate, hw);
         }else if(!sMonSubjectId.equals("") && sTueSubjectId.equals("")){
-            int monSubjectId = Integer.parseInt(sMonSubjectId);
-            s = new SubjectDAO().selectById(monSubjectId);
+            setHomework(response, task, sMonSubjectId, dueDate, hw);
         }else{
-            System.out.println("None");
+            response.sendRedirect("error.jsp");
         }
+
+    }
+
+    private void setHomework(HttpServletResponse response, String task, String SubjectId, String dueDate, Homework hw) throws IOException {
+        Subject s;
+        int tueSubjectId = Integer.parseInt(SubjectId);
+        s = new SubjectDAO().selectById(tueSubjectId);
         hw.setHomework(task);
         hw.setSubjectId(s);
         hw.setDueTill(dueDate);
