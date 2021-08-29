@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "editHomeworkServlet", value = "/editHomeworkServlet")
-public class editHomeworkServlet extends HttpServlet {
+public class EditHomeworkServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int homeworkId = Integer.parseInt(request.getParameter("id"));
         String task = request.getParameter("task");

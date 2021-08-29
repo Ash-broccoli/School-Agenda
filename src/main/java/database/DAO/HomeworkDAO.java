@@ -16,6 +16,13 @@ public class HomeworkDAO {
         em.getTransaction().commit();
         em.close();
     }
+    public void delete(Homework hw) {
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+        em.remove(em.contains(hw) ? hw : em.merge(hw));
+        em.getTransaction().commit();
+        em.close();
+    }
 
     public List<Homework> select(){
         EntityManager em = Connector.getInstance().open();

@@ -52,8 +52,9 @@
     <br>
     <h1>Edit Homework</h1>
     <%
+        HomeworkDAO homeworkDAO = new HomeworkDAO();
         int id = Integer.parseInt(request.getParameter("editId"));
-        Homework hw = new HomeworkDAO().selectById(id);
+        Homework hw = homeworkDAO.selectById(id);
         String task = hw.getHomework();
         int subjectId = hw.getSubjectId().getSubjectId();
         String dueDate = hw.getDueTill();
@@ -101,6 +102,10 @@
         <br>
         <button class="btn btn-Secondary" type="submit" name="submit">Edit homework</button>
     </form>
+    <div>
+        <button class="btn btn-Secondary" onclick="window.history.back()">Back</button>
+        <button class="btn btn-danger" onclick="window.location='deleteHomeworkServlet?id=<%out.print(id);%>'">Delete homework</button>
+    </div>
 </div>
 </body>
 </html>
