@@ -52,9 +52,11 @@
     <br>
     <h1>Subjects</h1>
     <%
-        ArrayList<Subject> subList;
+        ArrayList<Subject> subListMon;
+        ArrayList<Subject> subListTue;
         SubjectDAO subjectDAO = new SubjectDAO();
-        subList = (ArrayList<Subject>) subjectDAO.select();
+        subListMon = (ArrayList<Subject>) subjectDAO.selectByDay("Monday");
+        subListTue = (ArrayList<Subject>) subjectDAO.selectByDay("Tuesday");
     %>
     <br>
     <div class="row">
@@ -68,7 +70,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% for (Subject s : subList) {%>
+                <% for (Subject s : subListMon) {%>
                 <tr>
                     <td>
                         <%out.print(s.getSubject());%>
@@ -97,7 +99,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% for (Subject s : subList) {%>
+                <% for (Subject s : subListTue) {%>
                 <tr>
                     <td>
                         <%out.print(s.getSubject());%>

@@ -7,12 +7,14 @@ import javax.persistence.*;
 public class Subject {
     private int subjectId;
     private String subject;
+    private String day;
 
     public Subject() {
     }
 
-    public Subject(String subject) {
+    public Subject(String subject, String day) {
         this.subject = subject;
+        this.day = day;
     }
 
     @Id
@@ -33,5 +35,14 @@ public class Subject {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    @Column(name="day")
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 }

@@ -24,6 +24,15 @@ public class SubjectDAO {
         return result;
     }
 
+    public List<Subject> selectByDay(String day){
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+        List<Subject> result = em.createQuery("select s from Subject s where s.day = :day", Subject.class).setParameter("day", day).getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return result;
+    }
+
     public Subject selectById(int id){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();

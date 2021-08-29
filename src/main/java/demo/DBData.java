@@ -10,7 +10,7 @@ public class DBData {
     public ArrayList<Subject> getSubject() {
         ArrayList<Subject> subjectList = new ArrayList<>();
 
-        subjectList.add(new Subject("English"));
+        subjectList.add(new Subject("English", "Monday"));
 
         return subjectList;
     }
