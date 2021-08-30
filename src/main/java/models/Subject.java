@@ -8,13 +8,15 @@ public class Subject {
     private int subjectId;
     private String subject;
     private String day;
+    private Login loginId;
 
     public Subject() {
     }
 
-    public Subject(String subject, String day) {
+    public Subject(String subject, String day, Login loginId) {
         this.subject = subject;
         this.day = day;
+        this.loginId = loginId;
     }
 
     public void setEverything(Subject s) {
@@ -49,5 +51,15 @@ public class Subject {
 
     public void setDay(String day) {
         this.day = day;
+    }
+
+    @OneToOne
+    @JoinColumn(name="loginId")
+    public Login getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(Login loginId) {
+        this.loginId = loginId;
     }
 }

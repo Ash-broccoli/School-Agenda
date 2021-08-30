@@ -10,17 +10,20 @@ public class Homework {
     private Subject subjectId;
     private String dueTill;
     private boolean completed = false;
+    private Login loginId;
 
 
     public Homework() {
     }
 
-    public Homework(String homework, Subject subjectId, String dueTill, boolean completed) {
+    public Homework(String homework, Subject subjectId, String dueTill, boolean completed, Login loginId) {
         this.homework = homework;
         this.subjectId = subjectId;
         this.dueTill = dueTill;
         this.completed = completed;
+        this.loginId = loginId;
     }
+
     public void setEverything(Homework h) {
         this.setHomework(h.homework);
         this.setSubjectId(h.subjectId);
@@ -76,5 +79,15 @@ public class Homework {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    @OneToOne
+    @JoinColumn(name="loginId")
+    public Login getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(Login loginId) {
+        this.loginId = loginId;
     }
 }

@@ -11,16 +11,18 @@ public class Test {
     private String date;
     private Double grade;
     private boolean completed = false;
+    private Login loginId;
 
     public Test() {
     }
 
-    public Test( String content, Subject subjectId, String date, Double grade, boolean completed) {
+    public Test( String content, Subject subjectId, String date, Double grade, boolean completed, Login loginId) {
         this.content = content;
         this.subjectId = subjectId;
         this.date = date;
         this.grade = grade;
         this.completed = completed;
+        this.loginId = loginId;
     }
 
     public void setEverything(Test t) {
@@ -85,5 +87,15 @@ public class Test {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    @OneToOne
+    @JoinColumn(name="loginId")
+    public Login getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(Login loginId) {
+        this.loginId = loginId;
     }
 }
