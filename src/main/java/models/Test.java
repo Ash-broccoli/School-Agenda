@@ -40,7 +40,7 @@ public class Test {
     }
 
     public void setContent(String content) {
-        content = content;
+        this.content = content;
     }
 
     @OneToOne

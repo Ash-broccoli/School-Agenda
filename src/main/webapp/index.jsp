@@ -1,17 +1,20 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ page import="models.Homework" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="database.DAO.HomeworkDAO" %><%--
+  Created by IntelliJ IDEA.
+  User: alyss
+  Date: 27/08/2021
+  Time: 17:26
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>School Agenda</title>
+    <title>School-Agenda</title>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -21,7 +24,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.jsp">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -43,8 +48,63 @@
         </div>
     </nav>
     <br>
-    <h1>Welcome to your Agenda!</h1>
-    <br/>
+    <h1>Welcome to your Agenda</h1>
+
+    <hr class="pageDivider"/>
+    <%
+        ArrayList<Homework> incompleteHw;
+        HomeworkDAO homeworkDAO = new HomeworkDAO();
+
+        incompleteHw = (ArrayList<Homework>) homeworkDAO.selectByCompletion(false);
+        if (!incompleteHw.isEmpty()) {
+    %>
+    <br>
+    <h3>Incompleted Homework</h3>
+    <div class="table-responsive">
+        <table class="table table-Secondary table-striped table-hover">
+            <thead class="white-header">
+            <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Due until</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (Homework hw : incompleteHw) {%>
+            <tr>
+                <td>
+                    <%out.print(hw.getHomework());%>
+                </td>
+
+                <td>
+                    <%out.print(hw.getSubjectId().getSubject());%>
+                </td>
+
+                <td>
+                    <%out.print(hw.getDueTill());%>
+                </td>
+
+                <td>
+                    <%
+                        out.print("<p style=\"color: red;\">Incomplete</p>");
+                    %>
+                </td>
+                <td>
+                    <button onclick="window.location='editHomework.jsp?editId=<%out.print(hw.getHomeworkId());%>'" class="btn btn-secondary">Edit
+                    </button>
+                </td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+    </div>
+    <%
+        } else {
+            out.println("<h3>No incomplete homework to do</h3>");
+        }%>
+    <br>
 
 </div>
 </body>
