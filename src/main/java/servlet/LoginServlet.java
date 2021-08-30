@@ -39,11 +39,11 @@ public class LoginServlet extends HttpServlet {
         if(loggedIn){
             session.setAttribute("loginId", id);
             response.sendRedirect("index.jsp");
-            System.out.println("logged in");
+
         }else{
             session.setAttribute("wrongLogin", 1);
             response.sendRedirect("login.jsp");
-            System.out.println("no");
+
         }
     }
 }
