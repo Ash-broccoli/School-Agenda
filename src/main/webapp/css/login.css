@@ -54,15 +54,22 @@ body{
 .box .inputBox input:valid ~ label{
     top: -18px;
     left: 0;
-    color: #03a9f4;
+    color: #ababab;
     font-size: 12px;
 }
 .box input[type="submit"]{
     border: none;
     outline: none;
-    color: #fff;
-    background-color: #03a9f4;
+    color: #171717;
+    background-color: #c4c4c4;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    transition: 0.5s;
+}
+
+.box input[type="submit"]:hover{
+    color: #c4c4c4;
+    background-color: #171717;
+    transition: 0.5s;
 }
