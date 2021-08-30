@@ -63,4 +63,13 @@ public class TestDAO {
         em.getTransaction().commit();
         em.close();
     }
+
+    public void deleteById(int id) {
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+        Test result = selectById(id, em);
+        em.remove(result);
+        em.getTransaction().commit();
+        em.close();
+    }
 }
