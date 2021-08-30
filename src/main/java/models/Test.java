@@ -23,6 +23,14 @@ public class Test {
         this.completed = completed;
     }
 
+    public void setEverything(Test t) {
+        this.setContent(t.content);
+        this.setSubjectId(t.subjectId);
+        this.setDate(t.date);
+        this.setGrade(t.grade);
+        this.setCompleted(t.completed);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="testId")

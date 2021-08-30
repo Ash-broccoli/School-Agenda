@@ -68,7 +68,6 @@
                 <th scope="col">Subject</th>
                 <th scope="col">Due until</th>
                 <th scope="col">Status</th>
-                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -90,10 +89,6 @@
                     <%
                         out.print("<p style=\"color: red;\">Incomplete</p>");
                     %>
-                </td>
-                <td>
-                    <button onclick="window.location='editHomework.jsp?editId=<%out.print(hw.getHomeworkId());%>'" class="btn btn-secondary">Edit
-                    </button>
                 </td>
             </tr>
             <%}%>

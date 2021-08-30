@@ -18,7 +18,12 @@
     <link rel="stylesheet" href="css/style.css">
     <title>School-Agenda</title>
 </head>
-<body>
+<body <%
+    if (request.getParameter("complete") != null) {
+%>
+        onload="snackbarPopup()"
+        <%
+            }%>>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -84,7 +89,7 @@
                     <%out.print(t.getDate());%>
                 </td>
                 <td>
-                    <form action="finishedTestServlet" method="post">
+                    <form action="finishedTestServlet" method="get">
                         <input type=hidden name="testId" value="<%out.print(t.getTestId());%>">
                         <button type=submit
                                 name="submit" class="btn btn-success">Yepp!
@@ -165,5 +170,14 @@
         }
     %>
 </div>
+<script>
+    function snackbarPopup() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
+</script>
 </body>
 </html>
