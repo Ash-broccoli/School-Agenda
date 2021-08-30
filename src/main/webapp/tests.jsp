@@ -54,10 +54,10 @@
     <%
         TestDAO testDAO = new TestDAO();
         ArrayList<Test> incompleteTests;
-        ArrayList<Test> completeTests = new ArrayList<>();
+        ArrayList<Test> completeTests;
         incompleteTests = (ArrayList<Test>) testDAO.selectByCompletion(false);
         completeTests = (ArrayList<Test>) testDAO.selectByCompletion(true);
-        if(!incompleteTests.isEmpty()) {
+        if (!incompleteTests.isEmpty()) {
     %>
     <h3>Upcoming tests</h3>
     <div class="table-responsive">
@@ -72,7 +72,7 @@
             </tr>
             </thead>
             <tbody>
-            <%for(Test t : incompleteTests){%>
+            <%for (Test t : incompleteTests) {%>
             <tr>
                 <td>
                     <%out.print(t.getContent());%>
@@ -92,7 +92,8 @@
                     </form>
                 </td>
                 <td>
-                    <button onclick="window.location='editTest.jsp?editId=<%out.print(t.getTestId());%>'" class="btn btn-secondary">Edit
+                    <button onclick="window.location='editTest.jsp?editId=<%out.print(t.getTestId());%>'"
+                            class="btn btn-secondary">Edit
                     </button>
                 </td>
             </tr>
@@ -100,8 +101,69 @@
             </tbody>
         </table>
     </div>
-    <%}%>
-
+    <%
+        } else {
+            out.print("<h3>Upcoming tests</h3>");
+            out.print("<p>No test stress for you :)</p>");
+        }
+    %>
+    <br>
+    <div id="snackbar">Awesome. Edit the test and add your grade.</div>
+    <hr class="pageDivider"/>
+    <br>
+    <%if(!completeTests.isEmpty()){%>
+    <h3>Finished tests</h3>
+    <div class="table-responsive">
+        <table class="table table-Secondary table-striped table-hover">
+            <thead class="white-header">
+            <tr>
+                <th scope="col">Content</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Date</th>
+                <th scope="col">Grade</th>
+                <th scope="col">Done?</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <%for (Test t : completeTests) {%>
+            <tr>
+                <td>
+                    <%out.print(t.getContent());%>
+                </td>
+                <td>
+                    <%out.print(t.getSubjectId().getSubject());%>
+                </td>
+                <td>
+                    <%out.print(t.getDate());%>
+                </td>
+                <td>
+                    <%out.print(t.getGrade());%>
+                </td>
+                <td>
+                    <form action="finishedTestServlet" method="post">
+                        <input type=hidden name="testId" value="<%out.print(t.getTestId());%>">
+                        <button type=submit
+                                name="submit" class="btn btn-danger">...wait no
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <button onclick="window.location='editTest.jsp?editId=<%out.print(t.getTestId());%>'"
+                            class="btn btn-secondary">Edit
+                    </button>
+                </td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+    </div>
+    <%
+        } else {
+            out.print("<h3>Completed tests</h3>");
+            out.print("<p>No completed tests? Damn...</p>");
+        }
+    %>
 </div>
 </body>
 </html>
