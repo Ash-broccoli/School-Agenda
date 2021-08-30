@@ -56,6 +56,9 @@
     </nav>
     <br>
     <h1>Tests</h1>
+    <div style="height: 50px">
+        <button class="btn btn-Secondary" onclick="window.location.href='addTest.jsp'">Add Test</button>
+    </div>
     <%
         TestDAO testDAO = new TestDAO();
         ArrayList<Test> incompleteTests;
@@ -64,9 +67,7 @@
         completeTests = (ArrayList<Test>) testDAO.selectByCompletion(true);
         if (!incompleteTests.isEmpty()) {
     %>
-    <div style="height: 50px">
-        <button class="btn btn-Secondary" onclick="window.location.href='addTest.jsp'">Add Test</button>
-    </div>
+
     <h3>Upcoming tests</h3>
     <div class="table-responsive">
         <table class="table table-Secondary table-striped table-hover">
