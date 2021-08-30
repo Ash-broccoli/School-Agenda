@@ -10,11 +10,12 @@
 <head>
    <link rel="stylesheet" type="text/css" href="css/login.css">
     <title>Login</title>
+
 </head>
 <body>
 <div class="box">
     <h2>Login</h2>
-    <form action="">
+    <form action="loginServlet" method="post">
         <div class="inputBox">
             <input type="text" name="username" required="">
             <label for="">Username</label>
@@ -23,7 +24,10 @@
             <input type="password" name="password" required="">
             <label for="">Password</label>
         </div>
-        <input type="submit" name="" id="" value="Submit">
+        <%if(session.getAttribute("wrongLogin") != null){%>
+        <p style="color: red; text-align: center;">Username or password is incorrect</p>
+        <%}%>
+        <input type="submit" value="Submit">
     </form>
 </div>
 </body>
