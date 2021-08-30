@@ -1,10 +1,10 @@
 package servlet;
 
-import database.DAO.HomeworkDAO;
+import database.Connector;
 import database.DAO.TestDAO;
-import models.Homework;
 import models.Test;
 
+import javax.persistence.EntityManager;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +18,14 @@ public class FinishedTestServlet extends HttpServlet {
         int testId = Integer.parseInt(request.getParameter("testId"));
         TestDAO testDAO = new TestDAO();
 
-        Test t = testDAO.selectById(testId);
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+
+        Test t = testDAO.selectById(testId,em);
         t.setCompleted(true);
-        testDAO.update(t);
+
+        em.getTransaction().commit();
+        em.close();
 
         response.sendRedirect("tests.jsp?complete=true");
     }
@@ -29,9 +34,14 @@ public class FinishedTestServlet extends HttpServlet {
         int testId = Integer.parseInt(request.getParameter("testId"));
         TestDAO testDAO = new TestDAO();
 
-        Test t = testDAO.selectById(testId);
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+
+        Test t = testDAO.selectById(testId,em);
         t.setCompleted(false);
-        testDAO.update(t);
+
+        em.getTransaction().commit();
+        em.close();
 
         response.sendRedirect("tests.jsp");
     }

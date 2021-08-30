@@ -1,6 +1,8 @@
 <%@ page import="models.Homework" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="database.DAO.HomeworkDAO" %><%--
+<%@ page import="database.DAO.HomeworkDAO" %>
+<%@ page import="database.DAO.TestDAO" %>
+<%@ page import="models.Test" %><%--
   Created by IntelliJ IDEA.
   User: alyss
   Date: 27/08/2021
@@ -49,7 +51,45 @@
     </nav>
     <br>
     <h1>Welcome to your Agenda</h1>
-
+    <%
+        TestDAO testDAO = new TestDAO();
+        ArrayList<Test> incompleteTests;
+        incompleteTests = (ArrayList<Test>) testDAO.selectByCompletion(false);
+        if (!incompleteTests.isEmpty()) {
+    %>
+    <h3>Upcoming tests</h3>
+    <div class="table-responsive">
+        <table class="table table-Secondary table-striped table-hover">
+            <thead class="white-header">
+            <tr>
+                <th scope="col">Content</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%for (Test t : incompleteTests) {%>
+            <tr>
+                <td>
+                    <%out.print(t.getContent());%>
+                </td>
+                <td>
+                    <%out.print(t.getSubjectId().getSubject());%>
+                </td>
+                <td>
+                    <%out.print(t.getDate());%>
+                </td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+    </div>
+    <%
+        } else {
+            out.print("<h3>Upcoming tests</h3>");
+            out.print("<p>No upcoming tests</p>");
+        }
+    %>
     <hr class="pageDivider"/>
     <%
         ArrayList<Homework> incompleteHw;

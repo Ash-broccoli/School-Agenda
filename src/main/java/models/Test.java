@@ -28,7 +28,6 @@ public class Test {
         this.setSubjectId(t.subjectId);
         this.setDate(t.date);
         this.setGrade(t.grade);
-        this.setCompleted(t.completed);
     }
 
     @Id
