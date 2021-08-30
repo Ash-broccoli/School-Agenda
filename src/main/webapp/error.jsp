@@ -15,6 +15,11 @@
     <title>School-Agenda</title>
 </head>
 <body>
+<%
+    if (session.getAttribute("loginId") == null) {
+        response.sendRedirect("login.jsp");
+    }
+%>
 <div class="container">
     <br>
     <h1>Error something in the form was invalid!!</h1>
