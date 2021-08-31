@@ -53,6 +53,9 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="subjects.jsp">Subjects</a>
                     </li>
+                    <li class="nav-item">
+                        <a style="color: red" class="nav-link" aria-current="page" href="logoutServlet">Log-out</a>
+                    </li>
                 </ul>
             </div>
         </div>
