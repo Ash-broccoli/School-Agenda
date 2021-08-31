@@ -57,6 +57,7 @@
     </nav>
     <br>
     <h1>Grades</h1>
+    <h2>Under construction</h2>
     <%
 
     %>

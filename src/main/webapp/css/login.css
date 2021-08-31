@@ -37,7 +37,7 @@ body{
     border-bottom: 1px solid #fff;
     outline: none;
     background: transparent;
-    cursor: pointer;
+    cursor: text;
 }
 .box .inputBox label{
     position: absolute;
@@ -72,4 +72,13 @@ body{
     color: #c4c4c4;
     background-color: #171717;
     transition: 0.5s;
+}
+
+a{
+    color: white;
+    text-decoration: underline;
+    font-weight: bold;
+}
+a:hover{
+    cursor: pointer;
 }
