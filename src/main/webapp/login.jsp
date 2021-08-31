@@ -23,9 +23,12 @@
             <input type="password" name="password" required>
             <label >Password</label>
         </div>
-        <%if(session.getAttribute("wrongLogin") != null){%>
+        <%if(session.getAttribute("wrongLogIn") != null && (Integer) session.getAttribute("wrongLogIn") == 1){%>
         <p style="color: red; text-align: center;">Username or password is incorrect. Register if needed</p>
-        <%}%>
+        <%
+            session.setAttribute("wrongLogIn", 0);
+            }
+        %>
        <p style="color: white">Don't have a login? <a style="text-decoration: underline;" href="register.jsp">Register here!</a></p>
         <input type="submit" value="Login">
     </form>

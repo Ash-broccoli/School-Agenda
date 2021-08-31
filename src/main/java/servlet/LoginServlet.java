@@ -3,9 +3,6 @@ package servlet;
 import database.DAO.LoginDAO;
 import login.SHA256;
 import models.Login;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.context.internal.ManagedSessionContext;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,24 +23,27 @@ public class LoginServlet extends HttpServlet {
         int id = 0;
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String encodedPws = SHA256.getInstantSHA(password);
+        String encodedPassword = SHA256.getInstantSHA(password);
         boolean loggedIn = false;
-        ArrayList<Login> Llist =(ArrayList<Login>) new LoginDAO().select();
-        for(Login l : Llist){
-            if (l.getUsername().equals(username)&&l.getPassword().equals(encodedPws)) {
-                id = l.getLoginId();
-                loggedIn = true;
-                break;
+        boolean wrongUsername = true;
+        ArrayList<Login> usernames = (ArrayList<Login>) new LoginDAO().select();
+        for (Login u : usernames) {
+            if (username.equals(u.getUsername())) {
+                id = u.getLoginId();
+                wrongUsername = false;
             }
         }
-        if(loggedIn){
-            session.setAttribute("loginId", id);
-            response.sendRedirect("index.jsp");
-
-        }else{
-            session.setAttribute("wrongLogin", 1);
+        if (!wrongUsername) {
+            if (encodedPassword.equals(new LoginDAO().selectById(id).getPassword())) {
+                System.out.println("Logged in");
+                response.sendRedirect("index.jsp");
+                loggedIn = true;
+                session.setAttribute("loginId", id);
+            }
+        }
+        if (!loggedIn) {
+            session.setAttribute("wrongLogIn", 1);
             response.sendRedirect("login.jsp");
-
         }
     }
 }

@@ -16,11 +16,11 @@
   <h2>Register</h2>
   <form action="registerServlet" method="post">
     <div class="inputBox">
-      <input type="text" name="username" autofocus required>
+      <input type="text" name="setUsername" autofocus required>
       <label >Username</label>
     </div>
     <div class="inputBox">
-      <input type="password" name="password" id="setPassword" required>
+      <input type="password" name="setPassword" id="setPassword" required>
       <label >Password</label>
     </div>
     <div class="inputBox">
@@ -28,8 +28,8 @@
       <label >Confirm password</label>
     </div>
     <p style="color: red" id="warning"></p>
-    <%if(session.getAttribute("wrongLogin") != null){%>
-    <p style="color: red; text-align: center;">Username or password is incorrect</p>
+    <%if(session.getAttribute("userExists") != null){%>
+    <p style="color: red; text-align: center;">Username is unavailable</p>
     <%}%>
     <input type="submit" id="submit" value="Register">
   </form>
