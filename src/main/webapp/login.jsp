@@ -16,12 +16,12 @@
     <h2>Login</h2>
     <form action="loginServlet" method="post">
         <div class="inputBox">
-            <input type="text" name="username" required="">
-            <label for="">Username</label>
+            <input type="text" name="username" autofocus required>
+            <label >Username</label>
         </div>
         <div class="inputBox">
-            <input type="password" name="password" required="">
-            <label for="">Password</label>
+            <input type="password" name="password" required>
+            <label >Password</label>
         </div>
         <%if(session.getAttribute("wrongLogin") != null){%>
         <p style="color: red; text-align: center;">Username or password is incorrect</p>
