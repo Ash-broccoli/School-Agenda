@@ -50,6 +50,25 @@ public class LoginDAO {
         }
     }
 
+    public Login checkLogin(String username, String password) {
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+
+        Login result = checkLogin(username, password, em);
+
+        em.getTransaction().commit();
+        em.close();
+        return result;
+    }
+
+    public Login checkLogin(String username, String password, EntityManager em) {
+        try {
+            return em.createQuery("select l from Login l where lower(l.username) = lower(:username) and l.password = :password", Login.class).setParameter("password", password).setParameter("username", username).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
     public Login selectById(int loginId) {
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();

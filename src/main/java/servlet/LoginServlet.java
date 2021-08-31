@@ -24,26 +24,15 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String encodedPassword = SHA256.getInstantSHA(password);
-        boolean loggedIn = false;
-        boolean wrongUsername = true;
-        ArrayList<Login> usernames = (ArrayList<Login>) new LoginDAO().select();
-        for (Login u : usernames) {
-            if (username.equals(u.getUsername())) {
-                id = u.getLoginId();
-                wrongUsername = false;
-            }
-        }
-        if (!wrongUsername) {
-            if (encodedPassword.equals(new LoginDAO().selectById(id).getPassword())) {
-                System.out.println("Logged in");
-                response.sendRedirect("index.jsp");
-                loggedIn = true;
-                session.setAttribute("loginId", id);
-            }
-        }
-        if (!loggedIn) {
+        Login l = new LoginDAO().checkLogin(username, encodedPassword);
+        if(l == null){
             session.setAttribute("wrongLogIn", 1);
             response.sendRedirect("login.jsp");
+        }else{
+            id = l.getLoginId();
+            System.out.println("Logged in");
+            response.sendRedirect("index.jsp");
+            session.setAttribute("loginId", id);
         }
     }
 }
