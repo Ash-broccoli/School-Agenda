@@ -20,7 +20,7 @@
 <%
     if (session.getAttribute("loginId") == null) {
         response.sendRedirect("login.jsp");
-    }
+    }else{
 %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -66,7 +66,8 @@
                 <select id="MonSubject" class="form-control" name="MonSubject">
                     <option selected value="">Select one</option>
                     <%
-                        ArrayList<Subject> MonSubList = (ArrayList<Subject>) new SubjectDAO().selectByDay("Monday");
+                        int id = (Integer) session.getAttribute("loginId");
+                        ArrayList<Subject> MonSubList = (ArrayList<Subject>) new SubjectDAO().selectByLoginAndDay(id,"Monday");
                         for (Subject sub : MonSubList) {
                     %>
                     <option class="form-control" value="<%out.print(sub.getSubjectId());%>"><%
@@ -79,7 +80,7 @@
                 <select id="TueSubject" class="form-control" name="TueSubject">
                     <option selected value="">Select one </option>
                     <%
-                        ArrayList<Subject> TueSubList = (ArrayList<Subject>) new SubjectDAO().selectByDay("Tuesday");
+                        ArrayList<Subject> TueSubList = (ArrayList<Subject>) new SubjectDAO().selectByLoginAndDay(id,"Tuesday");
                         for (Subject sub : TueSubList) {
                     %>
                     <option class="form-control" value="<%out.print(sub.getSubjectId());%>"><%
@@ -97,5 +98,6 @@
         <button class="btn btn-Secondary" type="submit" name="submit">Add homework</button>
     </form>
 </div>
+<%}%>
 </body>
 </html>

@@ -33,6 +33,16 @@ public class HomeworkDAO {
         return result;
     }
 
+    public List<Homework> selectByLoginAndCompletion(int loginId, boolean isComplete){
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+        List<Homework> result = em.createQuery("select h from Homework h where h.loginId.loginId = :loginId and h.completed = :isComplete", Homework.class).setParameter("isComplete", isComplete).setParameter("loginId", loginId).getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return result;
+    }
+
+
     public List<Homework> selectByCompletion(boolean isComplete){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();

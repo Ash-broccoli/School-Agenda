@@ -22,7 +22,7 @@
 <%
     if (session.getAttribute("loginId") == null) {
         response.sendRedirect("login.jsp");
-    }
+    }else{
 %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -57,11 +57,12 @@
     <br>
     <h1>Subjects</h1>
     <%
+        int id = (Integer) session.getAttribute("loginId");
         ArrayList<Subject> subListMon;
         ArrayList<Subject> subListTue;
         SubjectDAO subjectDAO = new SubjectDAO();
-        subListMon = (ArrayList<Subject>) subjectDAO.selectByDay("Monday");
-        subListTue = (ArrayList<Subject>) subjectDAO.selectByDay("Tuesday");
+        subListMon = (ArrayList<Subject>) subjectDAO.selectByLoginAndDay(id,"Monday");
+        subListTue = (ArrayList<Subject>) subjectDAO.selectByLoginAndDay(id,"Tuesday");
     %>
     <div style="height: 50px">
         <button class="btn btn-Secondary" onclick="window.location.href='addSubject.jsp'">Add Subject</button>
@@ -119,5 +120,6 @@
         </div>
     </div>
 </div>
+<%}%>
 </body>
 </html>

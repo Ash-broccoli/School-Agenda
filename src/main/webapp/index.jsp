@@ -22,7 +22,7 @@
 <%
     if (session.getAttribute("loginId") == null) {
         response.sendRedirect("login.jsp");
-    }
+    }else{
 %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -57,9 +57,10 @@
     <br>
     <h1>Welcome to your Agenda</h1>
     <%
+        int id = (Integer) session.getAttribute("loginId");
         TestDAO testDAO = new TestDAO();
         ArrayList<Test> incompleteTests;
-        incompleteTests = (ArrayList<Test>) testDAO.selectByCompletion(false);
+        incompleteTests = (ArrayList<Test>) testDAO.selectByLoginAndCompletion(id,false);
         if (!incompleteTests.isEmpty()) {
     %>
     <h3>Upcoming tests</h3>
@@ -100,7 +101,7 @@
         ArrayList<Homework> incompleteHw;
         HomeworkDAO homeworkDAO = new HomeworkDAO();
 
-        incompleteHw = (ArrayList<Homework>) homeworkDAO.selectByCompletion(false);
+        incompleteHw = (ArrayList<Homework>) homeworkDAO.selectByLoginAndCompletion(id,false);
         if (!incompleteHw.isEmpty()) {
     %>
     <br>
@@ -147,5 +148,6 @@
     <br>
 
 </div>
+<%}%>
 </body>
 </html>

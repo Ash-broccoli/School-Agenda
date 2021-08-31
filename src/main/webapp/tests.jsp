@@ -27,7 +27,7 @@
 <%
     if (session.getAttribute("loginId") == null) {
         response.sendRedirect("login.jsp");
-    }
+    }else{
 %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -65,11 +65,12 @@
         <button class="btn btn-Secondary" onclick="window.location.href='addTest.jsp'">Add Test</button>
     </div>
     <%
+        int id = (Integer) session.getAttribute("loginId");
         TestDAO testDAO = new TestDAO();
         ArrayList<Test> incompleteTests;
         ArrayList<Test> completeTests;
-        incompleteTests = (ArrayList<Test>) testDAO.selectByCompletion(false);
-        completeTests = (ArrayList<Test>) testDAO.selectByCompletion(true);
+        incompleteTests = (ArrayList<Test>) testDAO.selectByLoginAndCompletion(id,false);
+        completeTests = (ArrayList<Test>) testDAO.selectByLoginAndCompletion(id,true);
         if (!incompleteTests.isEmpty()) {
     %>
 
@@ -188,5 +189,6 @@
         }, 3000);
     }
 </script>
+<%}%>
 </body>
 </html>

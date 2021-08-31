@@ -25,7 +25,7 @@
 <%
     if (session.getAttribute("loginId") == null) {
         response.sendRedirect("login.jsp");
-    }
+    }else{
 %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -63,12 +63,13 @@
         <button class="btn btn-Secondary" onclick="window.location.href='addHomework.jsp'">Add Homework</button>
     </div>
     <%
+        int id = (Integer) session.getAttribute("loginId");
         ArrayList<Homework> incompleteHw;
         ArrayList<Homework> completeHw;
         HomeworkDAO homeworkDAO = new HomeworkDAO();
 
-        incompleteHw = (ArrayList<Homework>) homeworkDAO.selectByCompletion(false);
-        completeHw = (ArrayList<Homework>) homeworkDAO.selectByCompletion(true);
+        incompleteHw = (ArrayList<Homework>) homeworkDAO.selectByLoginAndCompletion(id ,false);
+        completeHw = (ArrayList<Homework>) homeworkDAO.selectByLoginAndCompletion(id ,true);
         if (!incompleteHw.isEmpty()) {
     %>
 
@@ -201,5 +202,6 @@
         }, 3000);
     }
 </script>
+<%}%>
 </body>
 </html>
