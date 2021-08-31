@@ -9,12 +9,12 @@ import java.util.ArrayList;
 
 public class DBData {
 
-    public ArrayList<Subject> getSubject() {
-        ArrayList<Subject> subjectList = new ArrayList<>();
+    public ArrayList<Login> getLogin() {
+        ArrayList<Login> loginList = new ArrayList<>();
 
-//        subjectList.add(new Subject("English", "Monday", 1));
+        loginList.add(new Login("admin", "admin"));
 
-        return subjectList;
+        return loginList;
     }
 
     public ArrayList<Homework> getHomework() {

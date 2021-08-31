@@ -2,6 +2,7 @@ package demo;
 
 import database.Connector;
 import models.Homework;
+import models.Login;
 import models.Subject;
 
 import javax.persistence.EntityManager;
@@ -12,13 +13,13 @@ public class CreateDB {
         em.getTransaction().begin();
 
         DBData data = new DBData();
-        for (Subject s : data.getSubject()) {
+        for (Login s : data.getLogin()) {
             em.persist(s);
         }
 
-        for(Homework hw : data.getHomework()){
-            em.persist(hw);
-        }
+//        for(Homework hw : data.getHomework()){
+//            em.persist(hw);
+//        }
 
         em.getTransaction().commit();
         em.close();
