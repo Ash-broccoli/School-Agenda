@@ -17,10 +17,6 @@ public class CreateDB {
             em.persist(s);
         }
 
-//        for(Homework hw : data.getHomework()){
-//            em.persist(hw);
-//        }
-
         em.getTransaction().commit();
         em.close();
     }
