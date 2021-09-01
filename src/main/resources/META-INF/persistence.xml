@@ -14,8 +14,8 @@
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 
             <!-- hibernate configuration -->
-            <property name="hibernate.show_sql" value="false"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
 
             <!-- c3po configuration -->
             <property name="hibernate.c3po.min_size" value="10"/>

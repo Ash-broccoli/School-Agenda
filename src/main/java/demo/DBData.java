@@ -17,13 +17,13 @@ public class DBData {
         return loginList;
     }
 
-    public ArrayList<Homework> getHomework() {
-        ArrayList<Homework> hwList = new ArrayList<>();
-        Subject s = new SubjectDAO().selectById(2);
-
+//    public ArrayList<Homework> getHomework() {
+//        ArrayList<Homework> hwList = new ArrayList<>();
+//        Subject s = new SubjectDAO().selectById(2);
+//
 //        hwList.add(new Homework("Dream", s, "234", false, 1));
-
-
-        return hwList;
-    }
+//
+//
+//        return hwList;
+//    }
 }
