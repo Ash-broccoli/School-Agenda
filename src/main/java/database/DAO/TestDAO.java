@@ -25,19 +25,19 @@ public class TestDAO {
         return result;
     }
 
-    public List selectGrade(){
+    public List<Double> selectGrade(){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        List result = em.createQuery("select t.grade from Test t").getResultList();
+        List<Double> result = em.createQuery("select t.grade from Test t", Double.class).getResultList();
         em.getTransaction().commit();
         em.close();
         return result;
     }
 
-    public List selectGradeFromSubject(String subject){
+    public List<Double> selectGradeFromSubject(String subject){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        List result = em.createQuery("select t.grade from Test t where t.subjectId.subject = :subject").setParameter("subject", subject).getResultList();
+        List<Double> result = em.createQuery("select t.grade from Test t where t.subjectId.subject = :subject", Double.class).setParameter("subject", subject).getResultList();
         em.getTransaction().commit();
         em.close();
         return result;

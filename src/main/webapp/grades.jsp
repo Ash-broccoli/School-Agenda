@@ -2,7 +2,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="database.DAO.HomeworkDAO" %>
 <%@ page import="models.Test" %>
-<%@ page import="database.DAO.TestDAO" %><%--
+<%@ page import="database.DAO.TestDAO" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: alyss
   Date: 27/08/2021
@@ -63,7 +64,7 @@
     <%
         ArrayList<Test> gradeAndSubjects = (ArrayList<Test>) new TestDAO().select();
         double grade = 0;
-        ArrayList<Double> grades = (ArrayList<Double>) new TestDAO().selectGradeFromSubject("English");
+        List<Double> grades = new TestDAO().selectGradeFromSubject("English");
         for(Double d : grades){
             grade += d;
         }
