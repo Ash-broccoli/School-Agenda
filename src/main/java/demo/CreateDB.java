@@ -1,9 +1,7 @@
 package demo;
 
 import database.Connector;
-import models.Homework;
 import models.Login;
-import models.Subject;
 
 import javax.persistence.EntityManager;
 
