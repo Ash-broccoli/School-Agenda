@@ -1,7 +1,6 @@
 package database.DAO;
 
 import database.Connector;
-import models.Homework;
 import models.Test;
 
 import javax.persistence.EntityManager;
@@ -26,10 +25,19 @@ public class TestDAO {
         return result;
     }
 
-    public List<Test> selectByCompletion(boolean isComplete){
+    public List<Double> selectGrade(){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        List<Test> result = em.createQuery("select t from Test t where t.completed = :isComplete", Test.class).setParameter("isComplete", isComplete).getResultList();
+        List<Double> result = em.createQuery("select t.grade from Test t", Double.class).getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return result;
+    }
+
+    public List<Double> selectGradeFromSubject(String subject){
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+        List<Double> result = em.createQuery("select t.grade from Test t where t.subjectId.subject = :subject", Double.class).setParameter("subject", subject).getResultList();
         em.getTransaction().commit();
         em.close();
         return result;

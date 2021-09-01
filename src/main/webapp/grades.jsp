@@ -1,6 +1,9 @@
 <%@ page import="models.Homework" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="database.DAO.HomeworkDAO" %><%--
+<%@ page import="database.DAO.HomeworkDAO" %>
+<%@ page import="models.Test" %>
+<%@ page import="database.DAO.TestDAO" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: alyss
   Date: 27/08/2021
@@ -20,7 +23,7 @@
 <%
     if (session.getAttribute("loginId") == null) {
         response.sendRedirect("login.jsp");
-    }
+    } else {
 %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -59,25 +62,41 @@
     <h1>Grades</h1>
     <h2>Under construction</h2>
     <%
+        ArrayList<Test> gradeAndSubjects = (ArrayList<Test>) new TestDAO().select();
+        double grade = 0;
+        List<Double> grades = new TestDAO().selectGradeFromSubject("English");
+        for(Double d : grades){
+            grade += d;
+        }
+        System.out.println("English grade = " + grade);
+        double avg = (grade / grades.size());
 
+        System.out.println("avg = " + avg);
     %>
     <div class="table-responsive">
         <table class="table table-Secondary table-striped table-hover">
             <thead class="white-header">
             <tr>
-                <th scope="col">Task</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Grade</th>
             </tr>
             </thead>
             <tbody>
+            <% for(Test t : gradeAndSubjects){ %>
             <tr>
                 <td>
-                    <%--                    <%out.print(hw.getHomework());%>--%>
+                    <%out.println(t.getSubjectId().getSubject());%>
+                </td>
+                <td>
+                    <%out.println(t.getGrade());%>
                 </td>
             </tr>
+            <%}%>
             </tbody>
         </table>
     </div>
 
 </div>
+<%}%>
 </body>
 </html>
