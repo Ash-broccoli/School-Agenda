@@ -25,6 +25,8 @@
     if (session.getAttribute("loginId") == null) {
         response.sendRedirect("login.jsp");
     } else {
+        int id = (Integer) session.getAttribute("loginId");
+
 %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -62,47 +64,69 @@
     <br>
     <h1>Grades</h1>
     <h2>Under construction</h2>
-    <%
-        List<Test> gradeAndSubjects = new TestDAO().select();
-        List<String> subjects =  new SubjectDAO().selectSubject();
-        for(String s : subjects){
-            double grade = 0;
-            List<Double> grades = new TestDAO().selectGradeFromSubject(s);
-            for(Double d : grades){
-                grade += d;
-            }
-            System.out.println("s = " + s);
-
-            System.out.println( s +" grade = " + grade);
+    <div class="row">
+        <%
+            List<String> subjects = new SubjectDAO().selectSubject(id);
+            for (String s : subjects) {
+       %>
+        <div class="col-3">
+            <p><%out.print(s);%></p>
+            <div class="table-responsive">
+                <table class="table table-Secondary table-striped table-hover">
+                    <thead class="white-header">
+                    <tr>
+                        <th scope="col">Test</th>
+                        <th scope="col">Grade</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                        double grade = 0;
+                        List<Test> grades = new TestDAO().selectBySubject(s, id);
+                        for (Test g : grades) {
+                            grade += g.getGrade();
+                    %>
+                    <tr>
+                        <td>
+                            <% out.print(g.getContent()); %>
+                        </td>
+                        <td>
+                            <% out.print(g.getGrade()); %>
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <%
             double avg = (grade / grades.size());
-
-            System.out.println(s + " avg = " + avg);
         }
-
-
-    %>
-    <div class="table-responsive">
-        <table class="table table-Secondary table-striped table-hover">
-            <thead class="white-header">
-            <tr>
-                <th scope="col">Subject</th>
-                <th scope="col">Grade</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for(Test t : gradeAndSubjects){ %>
-            <tr>
-                <td>
-                    <%out.println(t.getSubjectId().getSubject());%>
-                </td>
-                <td>
-                    <%out.println(t.getGrade());%>
-                </td>
-            </tr>
-            <%}%>
-            </tbody>
-        </table>
+        %>
     </div>
+    <div class="row">
+        <div class="col-3">
+            <div class="table-responsive">
+                <table class="table table-Secondary table-striped table-hover">
+                    <thead class="white-header">
+                    <tr>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Grade</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 
 </div>
 <%}%>

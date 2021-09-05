@@ -34,10 +34,10 @@ public class SubjectDAO {
         return result;
     }
 
-    public List<String> selectSubject(){
+    public List<String> selectSubject(int loginId){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        List<String> result = em.createQuery("select t.subject from Subject t", String.class).getResultList();
+        List<String> result = em.createQuery("select s.subject from Subject s where s.loginId.loginId = :loginId", String.class).setParameter("loginId", loginId).getResultList();
         em.getTransaction().commit();
         em.close();
         return result;
