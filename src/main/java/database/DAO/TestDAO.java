@@ -28,7 +28,7 @@ public class TestDAO {
     public List<Test> selectBySubject(String subject, int loginId){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        List<Test> result = em.createQuery("select t from Test t where t.subjectId.subject = :subject and t.loginId.loginId = :loginId", Test.class).setParameter("subject", subject).setParameter("loginId", loginId).getResultList();
+        List<Test> result = em.createQuery("select t from Test t where t.subjectId.subject = :subject and t.loginId.loginId = :loginId and t.completed = true", Test.class).setParameter("subject", subject).setParameter("loginId", loginId).getResultList();
         em.getTransaction().commit();
         em.close();
         return result;

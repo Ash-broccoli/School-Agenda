@@ -50,7 +50,7 @@
                         <a class="nav-link" aria-current="page" href="tests.jsp">Tests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="grades.jsp">Grades</a>
+                        <a class="nav-link active" aria-current="page" href="grades.jsp">Grades</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="subjects.jsp">Subjects</a>
@@ -105,7 +105,7 @@
 
                     %>
 
-                    <tr>
+                    <tr style="border-top: 2px solid black">
                         <td style="font-weight: bold">
                             Average
                         </td>
