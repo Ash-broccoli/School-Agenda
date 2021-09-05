@@ -25,15 +25,6 @@ public class TestDAO {
         return result;
     }
 
-    public List<Double> selectGrade(){
-        EntityManager em = Connector.getInstance().open();
-        em.getTransaction().begin();
-        List<Double> result = em.createQuery("select t.grade from Test t", Double.class).getResultList();
-        em.getTransaction().commit();
-        em.close();
-        return result;
-    }
-
     public List<Double> selectGradeFromSubject(String subject){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();

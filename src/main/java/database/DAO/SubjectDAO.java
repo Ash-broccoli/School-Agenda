@@ -34,6 +34,15 @@ public class SubjectDAO {
         return result;
     }
 
+    public List<String> selectSubject(){
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+        List<String> result = em.createQuery("select t.subject from Subject t", String.class).getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return result;
+    }
+
     public List<Subject> selectByLoginAndDay(int loginId,String day){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();

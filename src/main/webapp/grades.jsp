@@ -3,7 +3,8 @@
 <%@ page import="database.DAO.HomeworkDAO" %>
 <%@ page import="models.Test" %>
 <%@ page import="database.DAO.TestDAO" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="database.DAO.SubjectDAO" %><%--
   Created by IntelliJ IDEA.
   User: alyss
   Date: 27/08/2021
@@ -62,16 +63,23 @@
     <h1>Grades</h1>
     <h2>Under construction</h2>
     <%
-        ArrayList<Test> gradeAndSubjects = (ArrayList<Test>) new TestDAO().select();
-        double grade = 0;
-        List<Double> grades = new TestDAO().selectGradeFromSubject("English");
-        for(Double d : grades){
-            grade += d;
-        }
-        System.out.println("English grade = " + grade);
-        double avg = (grade / grades.size());
+        List<Test> gradeAndSubjects = new TestDAO().select();
+        List<String> subjects =  new SubjectDAO().selectSubject();
+        for(String s : subjects){
+            double grade = 0;
+            List<Double> grades = new TestDAO().selectGradeFromSubject(s);
+            for(Double d : grades){
+                grade += d;
+            }
+            System.out.println("s = " + s);
 
-        System.out.println("avg = " + avg);
+            System.out.println( s +" grade = " + grade);
+            double avg = (grade / grades.size());
+
+            System.out.println(s + " avg = " + avg);
+        }
+
+
     %>
     <div class="table-responsive">
         <table class="table table-Secondary table-striped table-hover">
