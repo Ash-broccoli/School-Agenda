@@ -4,7 +4,8 @@
 <%@ page import="models.Test" %>
 <%@ page import="database.DAO.TestDAO" %>
 <%@ page import="java.util.List" %>
-<%@ page import="database.DAO.SubjectDAO" %><%--
+<%@ page import="database.DAO.SubjectDAO" %>
+<%@ page import="static java.lang.Double.isNaN" %><%--
   Created by IntelliJ IDEA.
   User: alyss
   Date: 27/08/2021
@@ -63,12 +64,13 @@
     </nav>
     <br>
     <h1>Grades</h1>
-    <h2>Under construction</h2>
+    <br>
+    <br>
     <div class="row">
         <%
             List<String> subjects = new SubjectDAO().selectSubject(id);
             for (String s : subjects) {
-       %>
+        %>
         <div class="col-3">
             <p><%out.print(s);%></p>
             <div class="table-responsive">
@@ -94,40 +96,31 @@
                             <% out.print(g.getGrade()); %>
                         </td>
                     </tr>
-                    <% } %>
+                    <% }
+                        double avg;
+                        avg = (grade / grades.size());
+                        if (isNaN(avg)) {
+                            avg = 0.0;
+                        }
+
+                    %>
+
+                    <tr>
+                        <td style="font-weight: bold">
+                            Average
+                        </td>
+                        <td style="text-decoration: underline">
+                            <% out.print(avg); %>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
         <%
-            double avg = (grade / grades.size());
-        }
+            }
         %>
     </div>
-    <div class="row">
-        <div class="col-3">
-            <div class="table-responsive">
-                <table class="table table-Secondary table-striped table-hover">
-                    <thead class="white-header">
-                    <tr>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Grade</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-
 </div>
 <%}%>
 </body>
