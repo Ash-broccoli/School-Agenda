@@ -7,14 +7,14 @@
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/schoolAgenda"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value=""/>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-34-247-151-118.eu-west-1.compute.amazonaws.com:5432/dd5m22vkd3dj25"/>
+            <property name="javax.persistence.jdbc.user" value="rbpjwibaxftrcc"/>
+            <property name="javax.persistence.jdbc.password" value="8578ed3ea295794c77d3ab2336bb26e62e871533016a419fb1ad10a1d865483e"/>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 
             <!-- hibernate configuration -->
-            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
 
             <!-- c3po configuration -->
