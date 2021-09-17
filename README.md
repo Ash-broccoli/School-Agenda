@@ -1,4 +1,4 @@
-# School Agenda for people in BMS
+# School Agenda for people in BZZ
 
 **What is this website**
 <br>
