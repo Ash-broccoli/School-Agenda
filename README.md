@@ -2,7 +2,7 @@
 
 **What is this website**
 <br>
-It's a digital agenda for people in BZZ (happy Tim?). You can keep track of your homework, tests, grades etc...
+It's a digital agenda for people in BZZ. You can keep track of your homework, tests, grades etc...
 You will have to add your own subjects so that it's not my fault if one is missing :P<br>
 I like the grade page because it keeps your average grades up to date and you don't have to calculate it yourself
 
