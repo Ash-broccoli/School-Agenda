@@ -37,7 +37,16 @@ public class TestDAO {
     public List<Test> selectByLoginAndCompletion(int loginId,boolean isComplete){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        List<Test> result = em.createQuery("select t from Test t where t.loginId.loginId = :loginId and t.completed = :isComplete", Test.class).setParameter("loginId", loginId).setParameter("isComplete", isComplete).getResultList();
+        List<Test> result = em.createQuery("select t from Test t where t.loginId.loginId = :loginId and t.completed = :isComplete and t.grade = 0", Test.class).setParameter("loginId", loginId).setParameter("isComplete", isComplete).getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return result;
+    }
+
+    public List<Test> selectByLoginAndGraded(int loginId, boolean isComplete){
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+        List<Test> result = em.createQuery("select t from Test t where t.loginId.loginId = :loginId and t.completed = :isComplete and t.grade <> 0", Test.class).setParameter("loginId", loginId).setParameter("isComplete", isComplete).getResultList();
         em.getTransaction().commit();
         em.close();
         return result;
