@@ -39,6 +39,7 @@ public class FinishedTestServlet extends HttpServlet {
 
         Test t = testDAO.selectById(testId,em);
         t.setCompleted(false);
+        t.setGrade(0.0);
 
         em.getTransaction().commit();
         em.close();

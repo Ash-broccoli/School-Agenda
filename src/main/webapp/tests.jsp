@@ -27,7 +27,7 @@
 <%
     if (session.getAttribute("loginId") == null) {
         response.sendRedirect("login.jsp");
-    }else{
+    } else {
 %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -72,8 +72,10 @@
         TestDAO testDAO = new TestDAO();
         ArrayList<Test> incompleteTests;
         ArrayList<Test> completeTests;
-        incompleteTests = (ArrayList<Test>) testDAO.selectByLoginAndCompletion(id,false);
-        completeTests = (ArrayList<Test>) testDAO.selectByLoginAndCompletion(id,true);
+        ArrayList<Test> gradedTests;
+        incompleteTests = (ArrayList<Test>) testDAO.selectByLoginAndCompletion(id, false);
+        completeTests = (ArrayList<Test>) testDAO.selectByLoginAndCompletion(id, true);
+        gradedTests = (ArrayList<Test>) testDAO.selectByLoginAndGraded(id, true);
         if (!incompleteTests.isEmpty()) {
     %>
 
@@ -129,59 +131,123 @@
     <div id="snackbar">Awesome. Edit the test and add your grade.</div>
     <hr class="pageDivider"/>
     <br>
-    <%if(!completeTests.isEmpty()){%>
-    <h3>Finished tests</h3>
-    <div class="table-responsive">
-        <table class="table table-Secondary table-striped table-hover">
-            <thead class="white-header">
-            <tr>
-                <th scope="col">Content</th>
-                <th scope="col">Subject</th>
-                <th scope="col">Date</th>
-                <th scope="col">Grade</th>
-                <th scope="col">Done?</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <%for (Test t : completeTests) {%>
-            <tr>
-                <td>
-                    <%out.print(t.getContent());%>
-                </td>
-                <td>
-                    <%out.print(t.getSubjectId().getSubject());%>
-                </td>
-                <td>
-                    <%out.print(t.getDate());%>
-                </td>
-                <td>
-                    <%out.print(t.getGrade());%>
-                </td>
-                <td>
-                    <form action="finishedTestServlet" method="post">
-                        <input type=hidden name="testId" value="<%out.print(t.getTestId());%>">
-                        <button type=submit
-                                name="submit" class="btn btn-danger">...wait no
-                        </button>
-                    </form>
-                </td>
-                <td>
-                    <button onclick="window.location='editTest.jsp?editId=<%out.print(t.getTestId());%>'"
-                            class="btn btn-secondary">Edit
-                    </button>
-                </td>
-            </tr>
-            <%}%>
-            </tbody>
-        </table>
+    <div class="row">
+        <%if (!completeTests.isEmpty()) {%>
+        <div class="col-6">
+
+            <h3>Written tests</h3>
+            <div class="table-responsive">
+                <table class="table table-Secondary table-striped table-hover">
+                    <thead class="white-header">
+                    <tr>
+                        <th scope="col">Content</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Done?</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%for (Test t : completeTests) {%>
+                    <tr>
+                        <td>
+                            <%out.print(t.getContent());%>
+                        </td>
+                        <td>
+                            <%out.print(t.getSubjectId().getSubject());%>
+                        </td>
+                        <td>
+                            <%out.print(t.getDate());%>
+                        </td>
+                        <td>
+                            <form action="finishedTestServlet" method="post">
+                                <input type=hidden name="testId" value="<%out.print(t.getTestId());%>">
+                                <button type=submit
+                                        name="submit" class="btn btn-danger">...wait no
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <button onclick="window.location='editTest.jsp?editId=<%out.print(t.getTestId());%>'"
+                                    class="btn btn-secondary">Grade
+                            </button>
+                        </td>
+                    </tr>
+                    <%}%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            <%
+                } else {
+                    out.print("<div class=\"col-6\">");
+                    out.print("<h3>Completed tests</h3>");
+                    out.print("<p>No completed tests? Damn...</p>");
+                    out.print("</div>");
+                }
+            %>
+
+
+        <%if (!gradedTests.isEmpty()) {%>
+        <div class="col-6">
+
+            <h3>Graded tests</h3>
+            <div class="table-responsive">
+                <table class="table table-Secondary table-striped table-hover">
+                    <thead class="white-header">
+                    <tr>
+                        <th scope="col">Content</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">Done?</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%for (Test t : gradedTests) {%>
+                    <tr>
+                        <td>
+                            <%out.print(t.getContent());%>
+                        </td>
+                        <td>
+                            <%out.print(t.getSubjectId().getSubject());%>
+                        </td>
+                        <td>
+                            <%out.print(t.getDate());%>
+                        </td>
+                        <td>
+                            <%out.print(t.getGrade());%>
+                        </td>
+                        <td>
+                            <form action="finishedTestServlet" method="post">
+                                <input type=hidden name="testId" value="<%out.print(t.getTestId());%>">
+                                <button type=submit
+                                        name="submit" class="btn btn-danger">...wait no
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <button onclick="window.location='editTest.jsp?editId=<%out.print(t.getTestId());%>'"
+                                    class="btn btn-secondary">Edit
+                            </button>
+                        </td>
+                    </tr>
+                    <%}%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            <%
+                } else {
+                    out.print("<div class=\"col-6\">");
+                    out.print("<h3>Graded tests</h3>");
+                    out.print("<p>Be sure to edit and add a grade when completed!</p>");
+                    out.print("</div>");
+                }
+            %>
+
     </div>
-    <%
-        } else {
-            out.print("<h3>Completed tests</h3>");
-            out.print("<p>No completed tests? Damn...</p>");
-        }
-    %>
 </div>
 <script>
     function snackbarPopup() {
