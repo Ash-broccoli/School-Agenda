@@ -8,7 +8,7 @@ public class Subject {
     private int subjectId;
     private String subject;
     private String day;
-    private boolean archived;
+    private boolean archived = false;
     private Login loginId;
 
     public Subject() {
@@ -60,7 +60,7 @@ public class Subject {
     public void setArchived(boolean archived) {this.archived = archived;}
 
     @OneToOne
-    @JoinColumn(name="loginId")
+    @JoinColumn(name="loginId", nullable = false)
     public Login getLoginId() {
         return loginId;
     }
