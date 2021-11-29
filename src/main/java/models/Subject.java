@@ -8,6 +8,7 @@ public class Subject {
     private int subjectId;
     private String subject;
     private String day;
+    private boolean archived;
     private Login loginId;
 
     public Subject() {
@@ -52,6 +53,11 @@ public class Subject {
     public void setDay(String day) {
         this.day = day;
     }
+
+    @Column(name="archived")
+    public boolean isArchived() {return archived;}
+
+    public void setArchived(boolean archived) {this.archived = archived;}
 
     @OneToOne
     @JoinColumn(name="loginId")
