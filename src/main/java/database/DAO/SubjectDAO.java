@@ -43,10 +43,19 @@ public class SubjectDAO {
         return result;
     }
 
+    public List<Subject> selectSubjectArchived(int loginId){
+        EntityManager em = Connector.getInstance().open();
+        em.getTransaction().begin();
+        List<Subject> result = em.createQuery("select s from Subject s where s.loginId.loginId = :loginId and s.archived = true", Subject.class).setParameter("loginId", loginId).getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return result;
+    }
+
     public List<Subject> selectByLoginAndDay(int loginId,String day){
         EntityManager em = Connector.getInstance().open();
         em.getTransaction().begin();
-        List<Subject> result = em.createQuery("select s from Subject s where s.loginId.loginId = :loginId and s.day = :day", Subject.class).setParameter("loginId", loginId).setParameter("day", day).getResultList();
+        List<Subject> result = em.createQuery("select s from Subject s where s.loginId.loginId = :loginId and s.day = :day and s.archived = false", Subject.class).setParameter("loginId", loginId).setParameter("day", day).getResultList();
         em.getTransaction().commit();
         em.close();
         return result;

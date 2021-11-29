@@ -22,7 +22,7 @@
 <%
     if (session.getAttribute("loginId") == null) {
         response.sendRedirect("login.jsp");
-    }else{
+    } else {
 %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -63,9 +63,11 @@
         int id = (Integer) session.getAttribute("loginId");
         ArrayList<Subject> subListMon;
         ArrayList<Subject> subListTue;
+        ArrayList<Subject> subListArch;
         SubjectDAO subjectDAO = new SubjectDAO();
-        subListMon = (ArrayList<Subject>) subjectDAO.selectByLoginAndDay(id,"Monday");
-        subListTue = (ArrayList<Subject>) subjectDAO.selectByLoginAndDay(id,"Tuesday");
+        subListMon = (ArrayList<Subject>) subjectDAO.selectByLoginAndDay(id, "Monday");
+        subListTue = (ArrayList<Subject>) subjectDAO.selectByLoginAndDay(id, "Tuesday");
+        subListArch = (ArrayList<Subject>) subjectDAO.selectSubjectArchived(id);
     %>
     <div style="height: 50px">
         <button class="btn btn-Secondary" onclick="window.location.href='addSubject.jsp'">Add Subject</button>
@@ -79,6 +81,7 @@
                 <tr>
                     <th scope="col">Subject</th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -88,8 +91,18 @@
                         <%out.print(s.getSubject());%>
                     </td>
                     <td>
-                        <button onclick="window.location='editSubject.jsp?editId=<%out.print(s.getSubjectId());%>'" class="btn btn-secondary">Edit
+                        <button onclick="window.location='editSubject.jsp?editId=<%out.print(s.getSubjectId());%>'"
+                                class="btn btn-secondary">Edit
                         </button>
+                    </td>
+                    <td>
+                        <form action="ArchiveSubjectServlet" method="post">
+                            <input type=hidden name="subjectId" value="<%out.print(s.getSubjectId());%>">
+                            <input type=hidden name="archive" value="true">
+                            <button type=submit
+                                    name="submit" class="btn btn-danger">Archive
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 <%}%>
@@ -104,6 +117,7 @@
                 <tr>
                     <th scope="col">Subject</th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -113,8 +127,53 @@
                         <%out.print(s.getSubject());%>
                     </td>
                     <td>
-                            <button onclick="window.location='editSubject.jsp?editId=<%out.print(s.getSubjectId());%>'" class="btn btn-secondary">Edit
+                        <button onclick="window.location='editSubject.jsp?editId=<%out.print(s.getSubjectId());%>'"
+                                class="btn btn-secondary">Edit
+                        </button>
+                    </td>
+                    <td>
+                        
+                        <form action="ArchiveSubjectServlet" method="post">
+                            <input type=hidden name="subjectId" value="<%out.print(s.getSubjectId());%>">
+                            <input type=hidden name="archive" value="true">
+                            <button type=submit
+                                    name="submit" class="btn btn-danger">Archive
                             </button>
+                        </form>
+                    </td>
+                </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+            <h3>Archived</h3>
+            <table class="table table-Secondary table-striped table-hover">
+                <thead class="white-header">
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <% for (Subject s : subListArch) {%>
+                <tr>
+                    <td>
+                        <%out.print(s.getSubject());%>
+                    </td>
+                    <td>
+                        <form action="ArchiveSubjectServlet" method="post">
+                            <input type=hidden name="subjectId" value="<%out.print(s.getSubjectId());%>">
+                            <input type=hidden name="archive" value="false">
+                            <button type=submit
+                                    name="submit" class="btn btn-secondary">Unarchive
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 <%}%>
