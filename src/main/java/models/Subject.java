@@ -54,13 +54,13 @@ public class Subject {
         this.day = day;
     }
 
-    @Column(name="archived")
+    @Column(name="archived" , nullable = false)
     public boolean isArchived() {return archived;}
 
     public void setArchived(boolean archived) {this.archived = archived;}
 
     @OneToOne
-    @JoinColumn(name="loginId", nullable = false)
+    @JoinColumn(name="loginId")
     public Login getLoginId() {
         return loginId;
     }
