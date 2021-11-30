@@ -5,7 +5,8 @@
 <%@ page import="database.DAO.TestDAO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="database.DAO.SubjectDAO" %>
-<%@ page import="static java.lang.Double.isNaN" %><%--
+<%@ page import="static java.lang.Double.isNaN" %>
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: alyss
   Date: 27/08/2021
@@ -97,11 +98,13 @@
                         </td>
                     </tr>
                     <% }
+
                         double avg;
                         avg = (grade / grades.size());
                         if (isNaN(avg)) {
                             avg = 0.0;
                         }
+                        avg = Math.round(avg*20.0)/20.0;
 
                     %>
 

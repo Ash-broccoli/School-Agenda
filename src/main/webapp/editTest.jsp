@@ -111,7 +111,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="grade">Grade</label>
-                <input type="number" name="grade" id="grade" class="form-control" placeholder="Grade" value="<%out.print(grade);%>" min="0" max="6" required step="0.1">
+                <input type="number" name="grade" id="grade" class="form-control" placeholder="Grade" value="<%out.print(grade);%>" min="0" max="6" required step="0.01">
             </div>
         </div>
         <br>
