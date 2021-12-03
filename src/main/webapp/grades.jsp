@@ -80,6 +80,7 @@
                     <tr>
                         <th scope="col">Test</th>
                         <th scope="col">Grade</th>
+                        <th scope="col">Weight</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -95,6 +96,9 @@
                         </td>
                         <td>
                             <% out.print(g.getGrade()); %>
+                        </td>
+                        <td>
+                            <% out.print((g.getWeight() != 0) ? g.getWeight()+"%" : "No Weight");%>
                         </td>
                     </tr>
                     <% }
@@ -114,6 +118,9 @@
                         </td>
                         <td style="text-decoration: underline">
                             <% out.print(avg); %>
+                        </td>
+                        <td>
+
                         </td>
                     </tr>
                     </tbody>

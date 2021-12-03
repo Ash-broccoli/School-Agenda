@@ -31,6 +31,7 @@ public class Test {
         this.setSubjectId(t.subjectId);
         this.setDate(t.date);
         this.setGrade(t.grade);
+        this.setWeight(t.weight);
     }
 
     @Id

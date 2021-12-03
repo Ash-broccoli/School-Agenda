@@ -68,6 +68,7 @@
         boolean isComplete = s.isCompleted();
         String date = s.getDate();
         double grade = s.getGrade();
+        int weight = s.getWeight();
 
     %>
     <form action="editTestServlet" method="get" accept-charset="UTF-8">
@@ -112,14 +113,21 @@
             </div><%
             if(isComplete){
         %>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-3">
                 <label for="grade">Grade</label>
                 <input type="number" name="grade" id="grade" class="form-control" placeholder="Grade" value="<%out.print(grade);%>" min="0" max="6" required step="0.01">
             </div>
+            <div class="form-group col-md-3">
+                <label for="weight">Weight %</label>
+                <input type="number" name="weight" id="weight" class="form-control" placeholder="Weight %" value="<%out.print(weight);%>" min="0" max="100" required step="1">
+                <p style="color: #fff3cd;">*Weight can be left as 0 if no weight is given by the teacher. The average will be calculated anyway</p>
+            </div>
+
             <%}else{%>
             <input type="hidden" name="grade" class="form-control" value="<%out.print(grade);%>">
             <%}%>
-        </div>
+</div>
+
         <br>
         <button class="btn btn-Secondary" type="submit" name="submit">Edit</button>
     </form>
