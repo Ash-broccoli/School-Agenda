@@ -65,6 +65,7 @@
         Test s = new TestDAO().selectById(id);
         String content = s.getContent();
         int subjectId = s.getSubjectId().getSubjectId();
+        boolean isComplete = s.isCompleted();
         String date = s.getDate();
         double grade = s.getGrade();
 
@@ -108,11 +109,16 @@
             <div class="form-group col-md-6">
                 <label for="date">Date</label>
                 <input type="date" name="date" id="date" class="form-control" placeholder="Date" value="<%out.print(date);%>" required>
-            </div>
+            </div><%
+            if(isComplete){
+        %>
             <div class="form-group col-md-6">
                 <label for="grade">Grade</label>
                 <input type="number" name="grade" id="grade" class="form-control" placeholder="Grade" value="<%out.print(grade);%>" min="0" max="6" required step="0.01">
             </div>
+            <%}else{%>
+            <input type="hidden" name="grade" class="form-control" value="<%out.print(grade);%>">
+            <%}%>
         </div>
         <br>
         <button class="btn btn-Secondary" type="submit" name="submit">Edit</button>
