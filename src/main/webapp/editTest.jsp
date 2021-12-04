@@ -65,8 +65,10 @@
         Test s = new TestDAO().selectById(id);
         String content = s.getContent();
         int subjectId = s.getSubjectId().getSubjectId();
+        boolean isComplete = s.isCompleted();
         String date = s.getDate();
         double grade = s.getGrade();
+        int weight = s.getWeight();
 
     %>
     <form action="editTestServlet" method="get" accept-charset="UTF-8">
@@ -108,12 +110,24 @@
             <div class="form-group col-md-6">
                 <label for="date">Date</label>
                 <input type="date" name="date" id="date" class="form-control" placeholder="Date" value="<%out.print(date);%>" required>
-            </div>
-            <div class="form-group col-md-6">
+            </div><%
+            if(isComplete){
+        %>
+            <div class="form-group col-md-3">
                 <label for="grade">Grade</label>
                 <input type="number" name="grade" id="grade" class="form-control" placeholder="Grade" value="<%out.print(grade);%>" min="0" max="6" required step="0.01">
             </div>
-        </div>
+            <div class="form-group col-md-3">
+                <label for="weight">Weight %</label>
+                <input type="number" name="weight" id="weight" class="form-control" placeholder="Weight %" value="<%out.print(weight);%>" min="0" max="100" required step="1">
+                <p style="color: #fff3cd;">*Weight can be left as 0 if no weight is given by the teacher. The average will be calculated anyway</p>
+            </div>
+
+            <%}else{%>
+            <input type="hidden" name="grade" class="form-control" value="<%out.print(grade);%>">
+            <%}%>
+</div>
+
         <br>
         <button class="btn btn-Secondary" type="submit" name="submit">Edit</button>
     </form>

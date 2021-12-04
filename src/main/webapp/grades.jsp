@@ -69,6 +69,8 @@
     <br>
     <div class="row">
         <%
+            double temp = 0;
+
             List<String> subjects = new SubjectDAO().selectSubject(id);
             for (String s : subjects) {
         %>
@@ -80,14 +82,22 @@
                     <tr>
                         <th scope="col">Test</th>
                         <th scope="col">Grade</th>
+                        <th scope="col">Weight</th>
                     </tr>
                     </thead>
                     <tbody>
                     <%
+                        double avg = 0.0;
                         double grade = 0;
+                        int weightSum = 0;
+                        boolean hasWeight = false;
+                        boolean isEmpty = true;
                         List<Test> grades = new TestDAO().selectBySubject(s, id);
+                        isEmpty = grades.isEmpty();
                         for (Test g : grades) {
                             grade += g.getGrade();
+
+                            hasWeight = g.getWeight() != 0;
                     %>
                     <tr>
                         <td>
@@ -96,16 +106,27 @@
                         <td>
                             <% out.print(g.getGrade()); %>
                         </td>
+                        <td>
+                            <% out.print((g.getWeight() != 0) ? g.getWeight() + "%" : "No Weight");%>
+                        </td>
                     </tr>
-                    <% }
+                    <%
+                            if (hasWeight) {
+                                weightSum += g.getWeight();
+                                temp += g.getWeight() * g.getGrade();
+                            }
+                        }
+                        if (hasWeight) {
+                            temp /= weightSum;
+                            avg = temp;
+                        }else if(!isEmpty){
+                            avg = (grade / grades.size());
 
-                        double avg;
-                        avg = (grade / grades.size());
+                        }
                         if (isNaN(avg)) {
                             avg = 0.0;
                         }
-                        avg = Math.round(avg*20.0)/20.0;
-
+                        avg = Math.round(avg * 20.0) / 20.0;
                     %>
 
                     <tr style="border-top: 2px solid black">
@@ -114,6 +135,9 @@
                         </td>
                         <td style="text-decoration: underline">
                             <% out.print(avg); %>
+                        </td>
+                        <td>
+
                         </td>
                     </tr>
                     </tbody>

@@ -23,28 +23,31 @@ public class EditTestServlet extends HttpServlet {
         String sTueSubjectId = request.getParameter("TueSubject");
         String date = request.getParameter("date");
         String grade = request.getParameter("grade");
+        String weight = request.getParameter("weight");
         Test t = new Test();
         t.setTestId(testId);
         Subject s = null;
 
         if (sMonSubjectId.equals("") && !sTueSubjectId.equals("")) {
-            setTest(response, content, sTueSubjectId, date, grade,t);
+            setTest(response, content, sTueSubjectId, date, grade, weight,t);
         } else if (!sMonSubjectId.equals("") && sTueSubjectId.equals("")) {
-            setTest(response, content, sMonSubjectId, date, grade,t);
+            setTest(response, content, sMonSubjectId, date, grade, weight,t);
         } else {
             response.sendRedirect("error.jsp");
         }
     }
 
-    private void setTest(HttpServletResponse response, String content, String sSubjectId, String date, String sGrade ,Test t) throws IOException {
+    private void setTest(HttpServletResponse response, String content, String sSubjectId, String date, String sGrade, String sweight ,Test t) throws IOException {
         Subject s;
         int SubjectId = Integer.parseInt(sSubjectId);
         double grade = Double.parseDouble(sGrade);
+        int weight = Integer.parseInt(sweight);
         s = new SubjectDAO().selectById(SubjectId);
         t.setContent(content);
         t.setSubjectId(s);
         t.setDate(date);
         t.setGrade(grade);
+        t.setWeight(weight);
         new TestDAO().update(t);
         response.sendRedirect("tests.jsp");
     }

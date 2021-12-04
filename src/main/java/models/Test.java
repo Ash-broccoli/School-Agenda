@@ -10,6 +10,7 @@ public class Test {
     private Subject subjectId;
     private String date;
     private Double grade;
+    private int weight;
     private boolean completed = false;
     private Login loginId;
 
@@ -30,6 +31,7 @@ public class Test {
         this.setSubjectId(t.subjectId);
         this.setDate(t.date);
         this.setGrade(t.grade);
+        this.setWeight(t.weight);
     }
 
     @Id
@@ -78,6 +80,13 @@ public class Test {
 
     public void setGrade(Double grade) {
         this.grade = grade;
+    }
+
+    @Column(name="weight", nullable = false)
+    public int getWeight() {return weight;}
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     @Column(name="completed")

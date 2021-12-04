@@ -200,6 +200,7 @@
                         <th scope="col">Subject</th>
                         <th scope="col">Date</th>
                         <th scope="col">Grade</th>
+                        <th scope="col">Weight</th>
                         <th scope="col">Done?</th>
                         <th scope="col"></th>
                     </tr>
@@ -218,6 +219,9 @@
                         </td>
                         <td>
                             <%out.print(t.getGrade());%>
+                        </td>
+                        <td>
+                            <% if(t.getWeight() != 0){ out.print(t.getWeight() + "%");} else{out.print("No weight");} %>
                         </td>
                         <td>
                             <form action="finishedTestServlet" method="post">
