@@ -1,5 +1,11 @@
 # School Agenda for people in BZZ
 
+__Update__
+- Subjects can get archived
+- Archived subjects will still be seen in the grades
+- Archived subjects will no longer be an option for new tests / homeworks
+- Weight of a grade can now be added for a test
+
 **What is this website**
 <br>
 It's a digital agenda for people in BZZ. You can keep track of your homework, tests, grades etc...
