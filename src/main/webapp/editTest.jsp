@@ -119,12 +119,12 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="weight">Weight %</label>
-                <input type="number" name="weight" id="weight" class="form-control" placeholder="Weight %" value="<%out.print(weight);%>" min="0" max="100" required step="1">
-                <p style="color: #fff3cd;">*Weight can be left as 0 if no weight is given by the teacher. The average will be calculated anyway</p>
+                <input type="number" name="weight" id="weight" class="form-control" placeholder="Weight %" value="<%out.print(weight);%>" min="1" max="100" required step="1">
             </div>
 
             <%}else{%>
             <input type="hidden" name="grade" class="form-control" value="<%out.print(grade);%>">
+            <input type="hidden" name="weight" class="form-control" value="<%out.print(weight);%>">
             <%}%>
 </div>
 
