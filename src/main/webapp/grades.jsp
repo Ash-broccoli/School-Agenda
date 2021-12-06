@@ -90,14 +90,15 @@
                         double avg = 0.0;
                         double grade = 0;
                         int weightSum = 0;
-                        boolean hasWeight = false;
                         boolean isEmpty = true;
                         List<Test> grades = new TestDAO().selectBySubject(s, id);
                         isEmpty = grades.isEmpty();
                         for (Test g : grades) {
                             grade += g.getGrade();
 
-                            hasWeight = g.getWeight() != 0;
+                            if(g.getWeight() == 0){
+                                g.setWeight(100);
+                            }
                     %>
                     <tr>
                         <td>
@@ -111,17 +112,14 @@
                         </td>
                     </tr>
                     <%
-                            if (hasWeight) {
-                                weightSum += g.getWeight();
-                                temp += g.getWeight() * g.getGrade();
-                            }
+                            weightSum += g.getWeight();
+                            temp += g.getWeight() * g.getGrade();
                         }
-                        if (hasWeight) {
+
                             temp /= weightSum;
                             avg = temp;
-                        }else if(!isEmpty){
+                        if(!isEmpty) {
                             avg = (grade / grades.size());
-
                         }
                         if (isNaN(avg)) {
                             avg = 0.0;

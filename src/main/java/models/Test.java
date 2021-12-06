@@ -10,7 +10,7 @@ public class Test {
     private Subject subjectId;
     private String date;
     private Double grade;
-    private int weight;
+    private int weight = 100;
     private boolean completed = false;
     private Login loginId;
 
