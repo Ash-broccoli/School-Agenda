@@ -1,6 +1,11 @@
 # School Agenda for people in BZZ
 
-__Update__
+__Update 10/12/2021__ 
+- Logout in the navbar is now stationed right
+- icon in the tab is added
+- 404 page was created (yes its supposed to look that stupid)
+
+__Update 03/12/2021__ 
 - Subjects can get archived
 - Archived subjects will still be seen in the grades
 - Archived subjects will no longer be an option for new tests / homeworks
