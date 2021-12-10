@@ -9,6 +9,7 @@
 <html>
 <head>
    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="icon" type="image/png" href="img/icon.png">
     <title>Login</title>
 </head>
 <body>
