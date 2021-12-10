@@ -8,6 +8,14 @@
     <link rel="icon" type="image/png" href="img/icon.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
+<style>
+    a:hover{
+        text-decoration: underline;
+        font-weight: bold;
+        color: hotpink;
+    }
+
+</style>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -46,8 +54,13 @@
         </div>
     </nav>
     <br>
-    <h1>Hm? Theres nothing here...</h1>
-    <h3>You seem lost. Head back here</h3>
+    <h1>Hm? Theres nothing here... I can't seem to find the page you're looking for</h1>
+    <br>
+    <br>
+    <h3>You seem lost. Head back<a href="index.jsp" style="color: deeppink; text-decoration:none;"> here </a></h3>
+
+    <img src="img/arrow.gif" width="300px" style="transform:rotate(-10deg);">
+    <img src="img/arrow.gif" width="340px" style="transform:rotate(-90deg);">
 </div>
 </body>
 </html>
