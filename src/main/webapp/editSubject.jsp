@@ -13,6 +13,7 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="img/icon.png">
     <title>School-Agenda</title>
 </head>
 <body>
@@ -46,11 +47,13 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="subjects.jsp">Subjects</a>
-                    </li>
+                    </li>  </ul>
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a style="color: red" class="nav-link" aria-current="page" href="logoutServlet">Log-out</a>
                     </li>
                 </ul>
+
             </div>
         </div>
     </nav>
