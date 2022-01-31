@@ -16,6 +16,8 @@ __Update 03/12/2021__
 
 ---
 
+**Website:** https://ash-schoolagenda.herokuapp.com/
+
 **What is this website**
 <br>
 It's a digital agenda for people in BZZ. You can keep track of your homework, tests, grades etc...
@@ -37,7 +39,6 @@ I like the grade page because it keeps your average grades up to date and you do
 - Incomplete Homework will be shown on the home page
 - Upcoming tests will also be shown on the home page
 
-**Website:** https://ash-schoolagenda.herokuapp.com/
 
 ---
 
