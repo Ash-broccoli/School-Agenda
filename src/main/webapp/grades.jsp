@@ -74,7 +74,8 @@
     <div class="row">
         <%
             double temp = 0;
-
+            int sizeSubjectsWithAvg = 0;
+            double zeugnisAvg = 0.0;
             List<String> subjects = new SubjectDAO().selectSubject(id);
             for (String s : subjects) {
         %>
@@ -100,7 +101,7 @@
                         for (Test g : grades) {
                             grade += g.getGrade();
 
-                            if(g.getWeight() == 0){
+                            if (g.getWeight() == 0) {
                                 g.setWeight(100);
                             }
                     %>
@@ -120,15 +121,19 @@
                             temp += g.getWeight() * g.getGrade();
                         }
 
-                            temp /= weightSum;
-                            avg = temp;
-                        if(!isEmpty) {
+                        temp /= weightSum;
+                        avg = temp;
+                        if (!isEmpty) {
                             avg = (grade / grades.size());
+                            avg = Math.round(avg * 20.0) / 20.0;
+                            zeugnisAvg += avg;
+                            sizeSubjectsWithAvg += 1;
+                        } else {
+                            avg = 0.0;
                         }
                         if (isNaN(avg)) {
                             avg = 0.0;
                         }
-                        avg = Math.round(avg * 20.0) / 20.0;
                     %>
 
                     <tr style="border-top: 2px solid black">
@@ -149,6 +154,11 @@
         <%
             }
         %>
+    </div>
+    <div class="col-3" style="background: #d7d8da; padding: 0.5%; text-align: center">
+        <h5 style="text-decoration: underline; color: black;">Zeugnis Durchschnitt:  <% zeugnisAvg /= sizeSubjectsWithAvg;
+            zeugnisAvg = Math.round(zeugnisAvg * 20.0) / 20.0;
+            out.println(zeugnisAvg); %></h5>
     </div>
 </div>
 <%}%>
