@@ -1,5 +1,8 @@
 # School Agenda for people in BZZ
 
+__Update 31/01/2022__
+- Average for your report card is calculated in the grades page
+
 __Update 10/12/2021__ 
 - Logout in the navbar is now stationed right
 - icon in the tab is added
